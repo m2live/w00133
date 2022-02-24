@@ -2,14 +2,14 @@
     "test": 1234,
     "hosting": [
         {
+            "name": "foo.com",
             "origin": {
-                "inputStream": "",
-                "type": "basicOrigin",
                 "address": [
                     "bar.com"
-                ]
-            },
-            "name": "foo.com"
+                ],
+                "inputStream": "",
+                "type": "basicOrigin"
+            }
         }
     ]
 }
