@@ -4,8 +4,8 @@
         {
             "name": "foo.com",
             "origin": {
-                "inputStream": "",
                 "type": "basicOrigin",
+                "inputStream": "",
                 "address": [
                     "bar.com"
                 ]
