@@ -1,3 +1,15 @@
 {
-    "test": 54321
+    "test": 54321,
+    "hosting": [
+        {
+            "origin": {
+                "inputStream": "",
+                "type": "basicOrigin",
+                "address": [
+                    "bar.com"
+                ]
+            },
+            "name": "foo.com"
+        }
+    ]
 }
