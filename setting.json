@@ -16,6 +16,16 @@
                     "hello.winesoft.co.kr"
                 ]
             }
+        },
+        {
+            "name": "foo.com",
+            "origin": {
+                "type": "basicOrigin",
+                "inputStream": "",
+                "address": [
+                    "bar.com"
+                ]
+            }
         }
     ],
     "env": {
