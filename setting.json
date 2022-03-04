@@ -20,11 +20,11 @@
         {
             "name": "foo.com",
             "origin": {
+                "inputStream": "",
+                "type": "basicOrigin",
                 "address": [
                     "bar.com"
-                ],
-                "type": "basicOrigin",
-                "inputStream": ""
+                ]
             }
         }
     ],
