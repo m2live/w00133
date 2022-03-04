@@ -23,8 +23,8 @@
                 "address": [
                     "bar.com"
                 ],
-                "inputStream": "",
-                "type": "basicOrigin"
+                "type": "basicOrigin",
+                "inputStream": ""
             }
         }
     ],
