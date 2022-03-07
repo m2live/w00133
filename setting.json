@@ -26,6 +26,15 @@
                     "bar.com"
                 ]
             }
+        },
+        {
+            "origin": {
+                "type": "basicOrigin",
+                "address": [
+                    "origin.com"
+                ]
+            },
+            "name": "domain.com"
         }
     ],
     "env": {
