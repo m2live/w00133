@@ -16,25 +16,6 @@
                     "hello.winesoft.co.kr"
                 ]
             }
-        },
-        {
-            "name": "foo.com",
-            "origin": {
-                "inputStream": "",
-                "type": "basicOrigin",
-                "address": [
-                    "bar.com"
-                ]
-            }
-        },
-        {
-            "origin": {
-                "type": "basicOrigin",
-                "address": [
-                    "origin.com"
-                ]
-            },
-            "name": "domain.com"
         }
     ],
     "env": {
