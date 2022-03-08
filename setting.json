@@ -16,6 +16,15 @@
                     "hello.winesoft.co.kr"
                 ]
             }
+        },
+        {
+            "name": "test.winesoft.com",
+            "origin": {
+                "type": "basicOrigin",
+                "address": [
+                    "https://www.google.com"
+                ]
+            }
         }
     ],
     "env": {
