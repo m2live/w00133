@@ -5,28 +5,7 @@
         "admin": "admin@example.com",
         "defaultHosting": "www.example.com"
     },
-    "hosting": [
-        {
-            "name": "www.example.com",
-            "enable": true,
-            "listen": "*:80",
-            "origin": {
-                "protocol": "HTTP",
-                "address": [
-                    "hello.winesoft.co.kr"
-                ]
-            }
-        },
-        {
-            "name": "test.winesoft.com",
-            "origin": {
-                "type": "basicOrigin",
-                "address": [
-                    "https://www.google.com"
-                ]
-            }
-        }
-    ],
+    "hosting": [],
     "env": {
         "log": {
             "info": {
