@@ -1,1 +1,809 @@
-{}
+{
+  "env": {
+    "log": {
+      "deny": {
+        "compression": false,
+        "enable": true,
+        "retention": 10,
+        "rolling": {
+          "size": 1
+        }
+      },
+      "info": {
+        "compression": false,
+        "enable": true,
+        "retention": 10,
+        "rolling": {
+          "size": 1
+        }
+      },
+      "originError": {
+        "compression": false,
+        "enable": true,
+        "retention": 10,
+        "rolling": {
+          "size": 1
+        },
+        "warning": false
+      }
+    },
+    "management": {
+      "api": {
+        "port": 10040
+      }
+    },
+    "network": {
+      "http": {
+        "frontEnd": {
+          "increaseCount": 6000,
+          "initCount": 20000,
+          "recvBufferSize": 8192
+        }
+      },
+      "http2": {
+        "concurrentStreamMaxCount": 10,
+        "enable": true,
+        "keepAliveSec": 10
+      },
+      "https": {
+        "frontEnd": {
+          "enableAES-NI": true,
+          "enableSni": true,
+          "increaseCount": 128,
+          "initCount": 200
+        }
+      },
+      "passiveSockets": {
+        "listenIps": [
+          "0.0.0.0:80"
+        ],
+        "maxCount": 80000,
+        "reopenRatio": 75
+      },
+      "pipelineSession": {
+        "externalTimeout": 300,
+        "internalTimeout": 10,
+        "keepAlive": {
+          "enable": true,
+          "reuseTimeout": 10
+        },
+        "listenTimeout": 10
+      }
+    },
+    "properties": {
+      "inspection": {
+        "memoryLimit": {
+          "coverage": "application",
+          "enable": true,
+          "killTimeout": 3000,
+          "schedule": "5 * * * * *",
+          "threshold": 5000
+        },
+        "process": {
+          "dir": "log/process",
+          "enable": true,
+          "retention": 14,
+          "schedule": "5 * * * * *"
+        }
+      },
+      "masterProcess": {
+        "enable": true,
+        "title": "m2m"
+      }
+    },
+    "puppeteer": {
+      "mode": {
+        "enableCache": false,
+        "headless": true
+      },
+      "options": [
+        "--proxy-server=",
+        "--media-cache-size=0",
+        "--disk-cache-size=0"
+      ],
+      "pagePool": {
+        "idleTimeout": 60000,
+        "max": 1,
+        "min": 0,
+        "pageReuseCount": 10000,
+        "useRandomCount": true
+      }
+    },
+    "rt": {
+      "config": {
+        "global": "/conf/server.xml",
+        "latest": "/conf/latest",
+        "refresh": {
+          "enable": true,
+          "interval": 5000
+        },
+        "runtime": "/addons/m2/runtime",
+        "vhosts": "/conf/vhosts.xml"
+      },
+      "localCacheStorage": {
+        "cleanup": {
+          "age": 1,
+          "emptyDir": "delete",
+          "fileCount": 0,
+          "time": "02:00"
+        },
+        "disks": [
+          {
+            "mount": "/user/cache1",
+            "quota": 100,
+            "quotaUnit": "size"
+          }
+        ],
+        "meta": {
+          "diskFailCount": 10,
+          "diskFailSec": 60,
+          "onCrash": "hang"
+        }
+      },
+      "location": {
+        "dir": "/usr/local/m2/rt",
+        "ip": "127.0.0.1",
+        "port": 80,
+        "protocol": "http"
+      },
+      "preCacheControl": {
+        "enable": true,
+        "matchFirstOnly": false,
+        "maxCount": 1024
+      },
+      "properties": {
+        "cacheObjectSize": 900,
+        "enableEmergencyMode": false,
+        "enableSyncStale": true,
+        "memoryRatio": 100,
+        "memoryRatioContents": 50,
+        "memoryRatioFree": 40,
+        "writeCountSmallFile": 0
+      },
+      "report": {
+        "enable": true,
+        "interval": "4h",
+        "path": "/addons/m2/latest?data="
+      }
+    }
+  },
+  "functions": {
+    "contents": {
+      "denc": {
+        "bulk": {
+          "enable": false,
+          "encrypt": {
+            "algorithm": "RC4",
+            "iv": "",
+            "key": "$token",
+            "keyHash": "none",
+            "token": ""
+          },
+          "keyword": "dencbulk",
+          "maxSourceSize": 500
+        },
+        "chunk": {
+          "enable": false,
+          "encryption": {
+            "algorithm": "RC4",
+            "iv": "",
+            "key": "$token",
+            "keyHash": "none",
+            "token": ""
+          },
+          "keyword": "denchunk",
+          "sampling": {
+            "enable": false,
+            "encryptSize": 16384,
+            "offset": 0,
+            "segmentSize": 1048576
+          }
+        }
+      },
+      "dims": {
+        "composite": [
+          {
+            "dissolve": 50,
+            "file": "/img/wmark_s.png",
+            "geometry": "+0+0",
+            "gravity": "c",
+            "name": "water_ratio"
+          }
+        ],
+        "gif": {
+          "firstFrameOnly": false,
+          "selectMinSize": false
+        },
+        "meta": {
+          "enable": false,
+          "keyword": "dims",
+          "maxSourceSize": 10,
+          "minSourceSize": 0
+        },
+        "quality": {
+          "format": 100,
+          "max": 100
+        }
+      },
+      "dvhls": {
+        "mp3": {
+          "meta": {
+            "duration": 10,
+            "enable": false,
+            "insertPcr": false,
+            "keyword": "mp3hls",
+            "segmentType": "ts"
+          },
+          "playlist": {
+            "alternates": false,
+            "alternatesName": "playlist.m3u8",
+            "indexName": "index.m3u8",
+            "sequence": 0,
+            "version": 3
+          }
+        },
+        "mp4": {
+          "playlist": {
+            "alternates": false,
+            "alternatesName": "playlist.m3u8",
+            "indexName": "index.m3u8",
+            "sequence": 0,
+            "version": 3
+          },
+          "run": {
+            "duration": 10,
+            "enable": false,
+            "keyword": "mp4hls"
+          }
+        }
+      },
+      "dvtrim": {
+        "trimming": {
+          "m4a": {
+            "enable": false,
+            "endParam": "end",
+            "multiParam": "trimming",
+            "startParam": "start"
+          },
+          "mp3": {
+            "trimming": {
+              "enable": false,
+              "endParam": "end",
+              "startParam": "start"
+            }
+          },
+          "mp4": {
+            "allTracks": false,
+            "enable": false,
+            "endParam": "end",
+            "maxRatio": 50,
+            "multiParam": "trimming",
+            "startParam": "start"
+          }
+        },
+        "upfrontHeader": {
+          "m4a": false,
+          "mp4": false
+        }
+      },
+      "pageDesk": {
+        "dom": {
+          "insert": {
+            "action": "appendChild",
+            "enable": false,
+            "list": []
+          },
+          "remove": {
+            "elements": [
+              "applet",
+              "acronym",
+              "bgsound",
+              "dir",
+              "frame",
+              "frameset",
+              "noframes",
+              "hgroup",
+              "isindex",
+              "listing",
+              "nextid",
+              "noembed",
+              "plaintext",
+              "strike",
+              "xmp",
+              "basefont",
+              "big",
+              "blink",
+              "center",
+              "font",
+              "marquee",
+              "menu",
+              "menuitem",
+              "multicol",
+              "nobr",
+              "spacer",
+              "tt",
+              "rb",
+              "rtc"
+            ],
+            "enable": false,
+            "includeChild": true
+          },
+          "sizeLimit": {
+            "enable": true,
+            "max": 1048576,
+            "timing": "preprocess"
+          },
+          "tags": {
+            "anchor": {
+              "enable": false,
+              "enableLink": true
+            }
+          }
+        },
+        "meta": {
+          "enable": false,
+          "keyword": "pagedesk"
+        },
+        "replace": {
+          "post": {
+            "enable": false,
+            "list": []
+          },
+          "pre": {
+            "enable": false,
+            "list": []
+          }
+        }
+      },
+      "pageEffector": {
+        "iframeAutoHeight": {
+          "enable": false,
+          "library": {
+            "child": {
+              "enable": false
+            },
+            "parent": {
+              "enable": false,
+              "option": null
+            }
+          },
+          "selector": false
+        },
+        "pinchZoom": {
+          "enable": false,
+          "selector": null
+        },
+        "responsive": {
+          "enable": false,
+          "width": 800
+        },
+        "viewMore": {
+          "enable": false,
+          "height": {
+            "initial": 900,
+            "margin": 0
+          }
+        }
+      },
+      "pageMixed": {
+        "fallback": {
+          "conditions": [
+            "abort",
+            "4xx",
+            "5xx"
+          ],
+          "enable": true,
+          "method": "redirect"
+        },
+        "meta": {
+          "enable": false,
+          "keyword": "pageMixed"
+        },
+        "options": {
+          "embed": {
+            "enable": false
+          },
+          "encrpytSrcUrl": {
+            "algorithm": null,
+            "enable": false,
+            "iv": null,
+            "key": null
+          },
+          "schemeless": {
+            "enable": false,
+            "originProtocol": "http"
+          },
+          "video": {
+            "enable": false
+          }
+        },
+        "traffics": {
+          "rebound": {
+            "domain": null,
+            "tags": {
+              "domain": null,
+              "targets": []
+            }
+          },
+          "resource": {
+            "domain": null
+          }
+        },
+        "upgradeHttps": {
+          "black": {
+            "enable": true,
+            "list": []
+          },
+          "ip": {
+            "enable": true
+          },
+          "retain": {
+            "enable": true,
+            "list": []
+          },
+          "svldb": {
+            "enable": true,
+            "report": {
+              "enable": true,
+              "schedule": "0 0 * * * *"
+            },
+            "update": {
+              "enable": true,
+              "schedule": "0 0 * * * *"
+            },
+            "url": "https://svl.m2live.co.kr"
+          },
+          "syntax": {
+            "enable": true,
+            "proxying": "http"
+          },
+          "targetTags": [
+            "img.src",
+            "img.data-src",
+            "input.src",
+            "video.src",
+            "source.src",
+            "iframe.src",
+            "link.href",
+            "script.src",
+            "a.href",
+            "embed.src"
+          ],
+          "white": {
+            "enable": true,
+            "list": []
+          }
+        }
+      },
+      "pageOptimizer": {
+        "fallback": {
+          "conditions": [
+            "abort",
+            "4xx",
+            "5xx"
+          ],
+          "enable": true,
+          "method": "redirect"
+        },
+        "image": {
+          "meta": {
+            "dimsKeyword": "dims",
+            "domain": null
+          },
+          "optimize": {
+            "enable": false,
+            "selector": "#aaa.bbb.ccc"
+          },
+          "split": {
+            "enable": false,
+            "minHeight": 800
+          }
+        },
+        "meta": {
+          "enable": false,
+          "keyword": "pageopt"
+        }
+      }
+    },
+    "network": {
+      "cache": {
+        "cachingKey": {
+          "acceptEncoding": {
+            "enable": true
+          },
+          "case": {
+            "enable": true
+          },
+          "postMethod": {
+            "bodyContentLengthMax": 102400,
+            "bodySensitive": true,
+            "enable": false
+          },
+          "queryString": {
+            "enable": true
+          },
+          "vary": {
+            "enable": true
+          }
+        },
+        "purge": {
+          "noCacheRequestExpire": false,
+          "purge2Expire": "none",
+          "queryStringCollective": false,
+          "refreshExpired": true,
+          "resCodeNoCtrlTarget": 200,
+          "rootHardPurge": true,
+          "rootPurgeExpire": "all"
+        },
+        "ttl": {
+          "policies": {
+            "extendBy4xx": false,
+            "extendBy5xx": true,
+            "originBusy": 3,
+            "priority": [
+              "cc_nocache",
+              "custom",
+              "cc_maxage",
+              "rescode"
+            ],
+            "unvalidatableObjectResCode": 0
+          },
+          "resCode": {
+            "noCache": {
+              "max": 5,
+              "maxAge": 0,
+              "ratio": 0,
+              "sec": 5
+            },
+            "onError": {
+              "connectTimeout": 3,
+              "receiveTimeout": 3
+            },
+            "res2xx": {
+              "max": 86400,
+              "ratio": 0,
+              "sec": 300
+            },
+            "res3xx": {
+              "sec": 300
+            },
+            "res4xx": {
+              "sec": 300
+            },
+            "res5xx": {
+              "sec": 300
+            }
+          }
+        }
+      },
+      "http": {
+        "backEnd": {
+          "authorization": {
+            "accessKeyID": "",
+            "enable": false,
+            "region": "",
+            "secretAccessKey": "",
+            "type": "aws-s3"
+          },
+          "dns": {
+            "ttlMax": 0,
+            "ttlMin": 0
+          },
+          "headers": {
+            "etag": {
+              "enable": false
+            },
+            "host": {
+              "enable": false,
+              "value": null
+            },
+            "ifRange": {
+              "enable": false
+            },
+            "initByFullRange": {
+              "enable": false
+            },
+            "limitMaxRange": {
+              "enable": false,
+              "size": 1
+            },
+            "modify": {
+              "enable": false,
+              "matchFirstOnly": false
+            },
+            "originalEtag": {
+              "enable": false
+            },
+            "userAgent": {
+              "enable": false,
+              "value": null
+            },
+            "wholeClientRequest": {
+              "enable": false
+            },
+            "xff": {
+              "appendProxy": true
+            }
+          },
+          "health": {
+            "exclusion": {
+              "count": 3
+            },
+            "recovery": {
+              "count": 5,
+              "cycle": 10,
+              "log": true,
+              "responseCode": 0,
+              "url": "/"
+            }
+          },
+          "redirectionTrace": {
+            "enable": false
+          },
+          "session": {
+            "balanceMode": "roundrobin",
+            "busyCount": 100,
+            "connectTimeout": 3,
+            "receiveTimeout": 10,
+            "reuseTimeout": 60
+          }
+        },
+        "frontEnd": {
+          "accessControl": {
+            "denialCode": 401,
+            "enable": false,
+            "mode": "deny"
+          },
+          "bypass": {
+            "getMethod": {
+              "enable": false,
+              "enableBackendAffinity": true,
+              "enableSticky": true
+            },
+            "postMethod": {
+              "enable": false,
+              "enableBackendAffinity": true,
+              "enableSticky": true
+            },
+            "putMethod": {
+              "enable": false,
+              "enableBackendAffinity": true,
+              "enableSticky": true
+            },
+            "session": {
+              "connectTimeout": 5,
+              "receiveTimeout": 300
+            }
+          },
+          "compression": {
+            "brotli": {
+              "quality": 11,
+              "window": 22
+            },
+            "enable": false,
+            "gzip": {
+              "level": 6
+            },
+            "maxSrcSize": 2048,
+            "minSrcSize": 2
+          },
+          "customErrorPage": {
+            "path": "/error.html",
+            "resCode": 0
+          },
+          "headers": {
+            "age": {
+              "enable": true
+            },
+            "cacheOriginal": {
+              "enable": false,
+              "standard": false
+            },
+            "connection": {
+              "directive": "keep-alive"
+            },
+            "debug": {
+              "enableContentProcessing": false
+            },
+            "etag": {
+              "enable": true
+            },
+            "expires": {
+              "base": "access",
+              "enable": false
+            },
+            "ifRange": {
+              "enable": false,
+              "purge": false
+            },
+            "keepAlive": {
+              "enable": true,
+              "max": 0
+            },
+            "lastModified": {
+              "rule": "exact"
+            },
+            "modify": {
+              "enable": false,
+              "matchFirstOnly": false
+            },
+            "server": {
+              "enable": true
+            },
+            "via": {
+              "enable": true
+            }
+          },
+          "session": {
+            "keepAliveSec": 10
+          }
+        }
+      }
+    },
+    "operations": {
+      "log": {
+        "access": {
+          "compression": false,
+          "enable": true,
+          "form": "m2",
+          "format": null,
+          "loopback": false,
+          "retention": 10,
+          "rolling": {
+            "time": 60
+          },
+          "xff": "all"
+        },
+        "dims": {
+          "compression": false,
+          "enable": true,
+          "retention": 10,
+          "rolling": {
+            "time": 60
+          }
+        },
+        "meta": {
+          "dir": "/m2log"
+        },
+        "monitoring": {
+          "compression": false,
+          "enable": true,
+          "form": "json",
+          "retention": 10,
+          "rolling": {
+            "time": 60
+          }
+        },
+        "origin": {
+          "compression": false,
+          "enable": true,
+          "loopback": false,
+          "retention": 10,
+          "rolling": {
+            "time": 60
+          }
+        }
+      },
+      "stats": {
+        "https": {
+          "seperate": false
+        },
+        "level": {
+          "accumulate": false,
+          "depth": 0
+        },
+        "loopback": {
+          "active": false,
+          "passive": false
+        }
+      }
+    }
+  },
+  "hosting": [],
+  "meta": {
+    "admin": "admin@example.com",
+    "defaultHosting": "www.example.com",
+    "hostName": "example",
+    "version": "2"
+  }
+}
