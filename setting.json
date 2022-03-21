@@ -7,7 +7,7 @@
     },
     "hosting": [
         {
-            "enable": true,
+            "enable": "false",
             "listen": "*:80",
             "origin": {
                 "protocol": "HTTPS",
@@ -15,7 +15,7 @@
                     "127.0.0.1"
                 ]
             },
-            "name": "foo.com"
+            "name": "www.google.com"
         }
     ],
     "env": {
