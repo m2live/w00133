@@ -16,6 +16,17 @@
                 ]
             },
             "name": "www.google.com"
+        },
+        {
+            "enable": true,
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "name": "foo.com"
         }
     ],
     "env": {
