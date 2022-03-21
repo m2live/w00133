@@ -27,6 +27,30 @@
                 ]
             },
             "name": "foo.com"
+        },
+        {
+            "enable": true,
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "name": "bar.com",
+            "functions": {
+                "network": {
+                    "cache": {
+                        "ttl": {
+                            "resCode": {
+                                "noCache": {
+                                    "sec": 30
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     ],
     "env": {
