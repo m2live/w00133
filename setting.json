@@ -1,55 +1,28 @@
 {
     "meta": {
         "version": "1",
-        "hostName": "example",
+        "hostName": "example2",
         "admin": "admin@example.com",
         "defaultHosting": "www.example.com"
     },
     "hosting": [
         {
+            "name": "www.example.com",
             "enable": true,
             "listen": "*:80",
             "origin": {
-                "protocol": "HTTPS",
+                "protocol": "HTTP",
                 "address": [
-                    "127.0.0.1"
+                    "hello.winesoft.co.kr"
                 ]
-            },
-            "name": "www.google.com"
+            }
         },
         {
-            "enable": true,
-            "listen": "*:80",
+            "name": "test.winesoft.com",
             "origin": {
-                "protocol": "HTTPS",
                 "address": [
-                    "127.0.0.1"
+                    "www.google.com"
                 ]
-            },
-            "name": "foo2.com"
-        },
-        {
-            "enable": true,
-            "listen": "*:80",
-            "origin": {
-                "protocol": "HTTPS",
-                "address": [
-                    "127.0.0.1"
-                ]
-            },
-            "name": "bar.com",
-            "functions": {
-                "network": {
-                    "cache": {
-                        "ttl": {
-                            "resCode": {
-                                "noCache": {
-                                    "sec": 30
-                                }
-                            }
-                        }
-                    }
-                }
             }
         }
     ],
