@@ -408,8 +408,7 @@
                     "method": "redirect",
                     "conditions": [
                         "abort",
-                        "4xx",
-                        "5xx"
+                        "4xx"
                     ]
                 }
             },
