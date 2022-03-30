@@ -7,23 +7,26 @@
     },
     "hosting": [
         {
-            "name": "www.example.com",
-            "enable": true,
             "listen": "*:80",
             "origin": {
-                "protocol": "HTTP",
+                "protocol": "HTTPS",
                 "address": [
-                    "hello.winesoft.co.kr"
+                    "127.0.0.1"
                 ]
-            }
+            },
+            "name": "www.google.com",
+            "enable": true
         },
         {
-            "name": "test.winesoft.com",
+            "listen": "*:80",
             "origin": {
+                "protocol": "HTTPS",
                 "address": [
-                    "www.google.com"
+                    "127.0.0.1"
                 ]
-            }
+            },
+            "name": "foo2.com",
+            "enable": true
         }
     ],
     "env": {
