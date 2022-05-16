@@ -27,6 +27,79 @@
             },
             "name": "foo2.com",
             "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "name": "image.winesoft",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "maxSourceSize": 100,
+                            "keyword": "dims"
+                        }
+                    }
+                }
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "functions": {},
+            "name": "image.winesoft.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "image.winesoft"
+                ]
+            },
+            "fallback": {
+                "next": "image.winesoft.second.origin.m2",
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "enable": true,
+                "urlRewrites": [
+                    {
+                        "pattern": "/(.*)",
+                        "replace": "/#1/aws_s3/put/1"
+                    }
+                ]
+            },
+            "functions": {},
+            "name": "image.winesoft.first.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.2"
+                ]
+            },
+            "functions": {},
+            "name": "image.winesoft.second.origin.m2",
+            "enable": true
         }
     ],
     "env": {
