@@ -36,19 +36,19 @@
                     "127.0.0.1"
                 ]
             },
+            "name": "image.winesoft",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
                             "maxSourceSize": 100,
-                            "keyword": "dims",
                             "enable": true,
-                            "minSourceSize": 0
+                            "minSourceSize": 0,
+                            "keyword": "dims"
                         }
                     }
                 }
             },
-            "name": "image.winesoft",
             "enable": true
         },
         {
@@ -59,8 +59,8 @@
                     "127.0.0.1"
                 ]
             },
-            "functions": {},
             "name": "image.winesoft.origin.m2",
+            "functions": {},
             "enable": true
         },
         {
@@ -72,6 +72,12 @@
                 ]
             },
             "name": "image.winesoft.first.origin.m2",
+            "urlRewrites": [
+                {
+                    "replace": "image.winesoft.second.origin.m2/#1/dims/strip/true/aws_s3/put/test3",
+                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true"
+                }
+            ],
             "functions": {},
             "fallback": {
                 "matchingList": [
@@ -79,6 +85,12 @@
                     "5xx"
                 ],
                 "enable": true,
+                "urlRewrites": [
+                    {
+                        "replace": "/#1/dims/strip/true/aws_s3/put/test3",
+                        "pattern": "/(.*)"
+                    }
+                ],
                 "next": "image.winesoft.second.origin.m2"
             },
             "enable": true
@@ -91,8 +103,19 @@
                     "127.0.0.1"
                 ]
             },
-            "functions": {},
             "name": "image.winesoft.second.origin.m2",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 10,
+                            "enable": true,
+                            "keyword": "dims",
+                            "minSourceSize": 0
+                        }
+                    }
+                }
+            },
             "enable": true
         }
     ],
