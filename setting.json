@@ -36,7 +36,6 @@
                     "127.0.0.1"
                 ]
             },
-            "name": "image.winesoft",
             "functions": {
                 "contents": {
                     "dims": {
@@ -49,6 +48,7 @@
                     }
                 }
             },
+            "name": "image.winesoft",
             "enable": true
         },
         {
@@ -71,28 +71,28 @@
                     "image.winesoft"
                 ]
             },
-            "name": "image.winesoft.first.origin.m2",
-            "urlRewrites": [
-                {
-                    "replace": "image.winesoft.second.origin.m2/#1/dims/strip/true/aws_s3/put/test3",
-                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true"
-                }
-            ],
-            "functions": {},
             "fallback": {
                 "matchingList": [
                     "4xx",
                     "5xx"
                 ],
+                "next": "image.winesoft.second.origin.m2",
                 "enable": true,
                 "urlRewrites": [
                     {
-                        "replace": "/#1/dims/strip/true/aws_s3/put/test3",
+                        "replace": "/#1/dims/strip/true/aws_s3/put/test4",
                         "pattern": "/(.*)"
                     }
-                ],
-                "next": "image.winesoft.second.origin.m2"
+                ]
             },
+            "functions": {},
+            "urlRewrites": [
+                {
+                    "replace": "image.winesoft.second.origin.m2/#1/dims/strip/true/aws_s3/put/test4",
+                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true"
+                }
+            ],
+            "name": "image.winesoft.first.origin.m2",
             "enable": true
         },
         {
@@ -108,14 +108,104 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 10,
-                            "enable": true,
                             "keyword": "dims",
-                            "minSourceSize": 0
+                            "enable": true,
+                            "minSourceSize": 0,
+                            "maxSourceSize": 10
                         }
                     }
                 }
             },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "enable": true,
+                            "minSourceSize": 12,
+                            "maxSourceSize": 100,
+                            "keyword": "key"
+                        }
+                    }
+                }
+            },
+            "name": "image.winesoft.com",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "functions": {},
+            "name": "image.winesoft.com.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "image.winesoft.com"
+                ]
+            },
+            "fallback": {
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "enable": true,
+                "urlRewrites": [
+                    {
+                        "pattern": "/(.*)",
+                        "replace": "/#1/dims/strip/true/aws_s3/put/TEST"
+                    }
+                ],
+                "next": "image.winesoft.com.second.origin.m2"
+            },
+            "name": "image.winesoft.com.first.origin.m2",
+            "urlRewrites": [
+                {
+                    "replace": "image.winesoft.com.second.origin.m2/#1/dims/strip/true/aws_s3/put/TEST",
+                    "pattern": "^image.winesoft.com.first.origin.m2/(.+)\\\\?refresh=true"
+                }
+            ],
+            "functions": {},
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "maxSourceSize": 10
+                        }
+                    }
+                }
+            },
+            "name": "image.winesoft.com.second.origin.m2",
             "enable": true
         }
     ],
