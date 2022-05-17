@@ -36,7 +36,6 @@
                     "127.0.0.1"
                 ]
             },
-            "name": "image.winesoft",
             "functions": {
                 "contents": {
                     "dims": {
@@ -49,6 +48,7 @@
                     }
                 }
             },
+            "name": "image.winesoft",
             "enable": true
         },
         {
@@ -71,28 +71,28 @@
                     "image.winesoft"
                 ]
             },
-            "urlRewrites": [
-                {
-                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true",
-                    "replace": "image.winesoft.second.origin.m2/#1/aws_s3/put/1"
-                }
-            ],
             "fallback": {
-                "enable": true,
-                "matchingList": [
-                    "4xx",
-                    "5xx"
-                ],
-                "next": "image.winesoft.second.origin.m2",
                 "urlRewrites": [
                     {
                         "replace": "/#1/aws_s3/put/1",
                         "pattern": "/(.*)"
                     }
+                ],
+                "enable": true,
+                "next": "image.winesoft.second.origin.m2",
+                "matchingList": [
+                    "4xx",
+                    "5xx"
                 ]
             },
-            "functions": {},
             "name": "image.winesoft.first.origin.m2",
+            "functions": {},
+            "urlRewrites": [
+                {
+                    "replace": "image.winesoft.second.origin.m2/#1/aws_s3/put/1",
+                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true"
+                }
+            ],
             "enable": true
         },
         {
@@ -100,11 +100,11 @@
             "origin": {
                 "protocol": "HTTPS",
                 "address": [
-                    "127.0.0.2"
+                    "127.0.0.1"
                 ]
             },
-            "name": "image.winesoft.second.origin.m2",
             "functions": {},
+            "name": "image.winesoft.second.origin.m2",
             "enable": true
         }
     ],
