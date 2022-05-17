@@ -2,8 +2,7 @@
     "meta": {
         "version": "1",
         "hostName": "example",
-        "admin": "admin@example.com",
-        "defaultHosting": "www.example.com"
+        "admin": "admin@example.com"
     },
     "hosting": [],
     "env": {
@@ -273,35 +272,6 @@
                             "enable": false
                         }
                     }
-                }
-            },
-            "pageOptimizer": {
-                "meta": {
-                    "enable": false,
-                    "keyword": "pageopt"
-                },
-                "image": {
-                    "meta": {
-                        "domain": null,
-                        "dimsKeyword": "dims"
-                    },
-                    "optimize": {
-                        "enable": false,
-                        "selector": "#aaa.bbb.ccc"
-                    },
-                    "split": {
-                        "enable": false,
-                        "minHeight": 800
-                    }
-                },
-                "fallback": {
-                    "enable": true,
-                    "method": "redirect",
-                    "conditions": [
-                        "abort",
-                        "4xx",
-                        "5xx"
-                    ]
                 }
             },
             "pageMixed": {
@@ -595,6 +565,21 @@
                         "enable": false,
                         "denialCode": 401,
                         "mode": "deny"
+                    },
+                    "compression": {
+                        "meta": {
+                            "enable": false,
+                            "keyword": "hcpr",
+                            "minSrcSize": 2,
+                            "maxSrcSize": 2048
+                        },
+                        "gzip": {
+                            "level": 6
+                        },
+                        "brotli": {
+                            "window": 22,
+                            "quality": 11
+                        }
                     },
                     "customErrorPage": {
                         "resCode": 0,
