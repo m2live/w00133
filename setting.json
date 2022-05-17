@@ -36,19 +36,19 @@
                     "127.0.0.1"
                 ]
             },
+            "name": "image.winesoft",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 100,
-                            "enable": true,
                             "minSourceSize": 0,
-                            "keyword": "dims"
+                            "maxSourceSize": 100,
+                            "keyword": "dims",
+                            "enable": true
                         }
                     }
                 }
             },
-            "name": "image.winesoft",
             "enable": true
         },
         {
@@ -59,8 +59,8 @@
                     "127.0.0.1"
                 ]
             },
-            "name": "image.winesoft.origin.m2",
             "functions": {},
+            "name": "image.winesoft.origin.m2",
             "enable": true
         },
         {
@@ -71,118 +71,28 @@
                     "image.winesoft"
                 ]
             },
+            "urlRewrites": [
+                {
+                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true",
+                    "replace": "image.winesoft.second.origin.m2/#1/dims/strip/true/aws_s3/put/test4"
+                }
+            ],
+            "functions": {},
+            "name": "image.winesoft.first.origin.m2",
             "fallback": {
                 "matchingList": [
                     "4xx",
                     "5xx"
                 ],
-                "next": "image.winesoft.second.origin.m2",
-                "enable": true,
                 "urlRewrites": [
                     {
                         "replace": "/#1/dims/strip/true/aws_s3/put/test4",
                         "pattern": "/(.*)"
                     }
-                ]
-            },
-            "functions": {},
-            "urlRewrites": [
-                {
-                    "replace": "image.winesoft.second.origin.m2/#1/dims/strip/true/aws_s3/put/test4",
-                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true"
-                }
-            ],
-            "name": "image.winesoft.first.origin.m2",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "HTTPS",
-                "address": [
-                    "127.0.0.1"
-                ]
-            },
-            "name": "image.winesoft.second.origin.m2",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims",
-                            "enable": true,
-                            "minSourceSize": 0,
-                            "maxSourceSize": 10
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "HTTPS",
-                "address": [
-                    "127.0.0.1"
-                ]
-            },
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "enable": true,
-                            "minSourceSize": 12,
-                            "maxSourceSize": 100,
-                            "keyword": "key"
-                        }
-                    }
-                }
-            },
-            "name": "image.winesoft.com",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "HTTPS",
-                "address": [
-                    "127.0.0.1"
-                ]
-            },
-            "functions": {},
-            "name": "image.winesoft.com.origin.m2",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "HTTPS",
-                "address": [
-                    "image.winesoft.com"
-                ]
-            },
-            "fallback": {
-                "matchingList": [
-                    "4xx",
-                    "5xx"
                 ],
                 "enable": true,
-                "urlRewrites": [
-                    {
-                        "pattern": "/(.*)",
-                        "replace": "/#1/dims/strip/true/aws_s3/put/TEST"
-                    }
-                ],
-                "next": "image.winesoft.com.second.origin.m2"
+                "next": "image.winesoft.second.origin.m2"
             },
-            "name": "image.winesoft.com.first.origin.m2",
-            "urlRewrites": [
-                {
-                    "replace": "image.winesoft.com.second.origin.m2/#1/dims/strip/true/aws_s3/put/TEST",
-                    "pattern": "^image.winesoft.com.first.origin.m2/(.+)\\\\?refresh=true"
-                }
-            ],
-            "functions": {},
             "enable": true
         },
         {
@@ -197,15 +107,15 @@
                 "contents": {
                     "dims": {
                         "meta": {
+                            "maxSourceSize": 10,
                             "keyword": "dims",
-                            "minSourceSize": 0,
                             "enable": true,
-                            "maxSourceSize": 10
+                            "minSourceSize": 0
                         }
                     }
                 }
             },
-            "name": "image.winesoft.com.second.origin.m2",
+            "name": "image.winesoft.second.origin.m2",
             "enable": true
         }
     ],
