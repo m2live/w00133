@@ -549,35 +549,6 @@
                         "dissolve": 50
                     }
                 ]
-            },
-            "dvtrim": {
-                "upfrontHeader": {
-                    "mp4": false,
-                    "m4a": false
-                },
-                "trimming": {
-                    "mp4": {
-                        "enable": false,
-                        "allTracks": false,
-                        "startParam": "start",
-                        "endParam": "end",
-                        "multiParam": "trimming",
-                        "maxRatio": 50
-                    },
-                    "m4a": {
-                        "enable": false,
-                        "startParam": "start",
-                        "endParam": "end",
-                        "multiParam": "trimming"
-                    },
-                    "mp3": {
-                        "trimming": {
-                            "enable": false,
-                            "startParam": "start",
-                            "endParam": "end"
-                        }
-                    }
-                }
             }
         },
         "network": {
