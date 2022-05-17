@@ -13,19 +13,25 @@
                     "127.0.0.1"
                 ]
             },
-            "name": "image.winesoft",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
                             "minSourceSize": 0,
-                            "enable": true,
+                            "maxSourceSize": 10,
                             "keyword": "dims",
-                            "maxSourceSize": 10
+                            "enable": true
                         }
                     }
                 }
             },
+            "urlRewrites": [
+                {
+                    "replace": "bc",
+                    "pattern": "a"
+                }
+            ],
+            "name": "image.winesoft",
             "enable": true
         },
         {
@@ -44,32 +50,24 @@
             "listen": "*:80",
             "origin": {
                 "protocol": "HTTPS",
+                "byClient": {
+                    "keyword": "external",
+                    "enable": true
+                },
                 "address": [
                     "image.winesoft"
                 ]
             },
+            "name": "image.winesoft.first.origin.m2",
+            "functions": {},
             "fallback": {
                 "matchingList": [
                     "4xx",
                     "5xx"
                 ],
-                "urlRewrites": [
-                    {
-                        "replace": "/#1/aws_s3/put/1",
-                        "pattern": "/(.*)"
-                    }
-                ],
                 "next": "image.winesoft.second.origin.m2",
                 "enable": true
             },
-            "name": "image.winesoft.first.origin.m2",
-            "functions": {},
-            "urlRewrites": [
-                {
-                    "replace": "image.winesoft.second.origin.m2/#1/aws_s3/put/1",
-                    "pattern": "^image.winesoft.first.origin.m2/(.+)\\\\?refresh=true"
-                }
-            ],
             "enable": true
         },
         {
@@ -80,8 +78,79 @@
                     "127.0.0.1"
                 ]
             },
-            "functions": {},
             "name": "image.winesoft.second.origin.m2",
+            "functions": {},
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "maxSourceSize": 10,
+                            "minSourceSize": 0,
+                            "enable": true
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "name": "demo.winesoft.co.kr.origin.m2",
+            "functions": {},
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "byClient": {
+                    "enable": true,
+                    "keyword": "external"
+                },
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "functions": {},
+            "fallback": {
+                "next": "demo.winesoft.co.kr.second.origin.m2",
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "enable": true
+            },
+            "name": "demo.winesoft.co.kr.first.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "HTTPS",
+                "address": [
+                    "m2.winesoft.co.kr"
+                ]
+            },
+            "functions": {},
+            "name": "demo.winesoft.co.kr.second.origin.m2",
             "enable": true
         }
     ],
