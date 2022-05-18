@@ -8,24 +8,47 @@
         {
             "listen": "*:80",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
-            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
                             "maxSourceSize": 20,
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "keyword": "dims"
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
                             "keyword": "dims",
                             "enable": true,
+                            "maxSourceSize": 11,
                             "minSourceSize": 0
                         }
                     }
                 }
             },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "image.winesoft.com"
+                ]
+            },
+            "name": "image.winesoft.com",
             "enable": true
         }
     ],
