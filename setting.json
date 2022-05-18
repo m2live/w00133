@@ -13,88 +13,19 @@
                     "demo.winesoft.co.kr"
                 ]
             },
+            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
+                            "maxSourceSize": 20,
                             "keyword": "dims",
                             "enable": true,
-                            "minSourceSize": 0,
-                            "maxSourceSize": 19
+                            "minSourceSize": 0
                         }
                     }
                 }
             },
-            "name": "141.164.35.166",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "name": "demo.winesoft.co.kr.origin.m2",
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "demo.winesoft.co.kr.first.origin.m2",
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "name": "demo.winesoft.co.kr.first.origin.m2",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "fallback": {
-                "next": "demo.winesoft.co.kr.second.origin.m2",
-                "enable": true,
-                "matchingList": [
-                    "4xx",
-                    "5xx"
-                ]
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "demo.winesoft.co.kr",
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "origin": {
-                "address": [
-                    "m2.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "name": "demo.winesoft.co.kr.second.origin.m2",
             "enable": true
         }
     ],
