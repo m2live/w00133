@@ -7,46 +7,46 @@
     "hosting": [
         {
             "listen": "*:80",
+            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
                             "maxSourceSize": 20,
-                            "enable": true,
-                            "minSourceSize": 0
+                            "minSourceSize": 0,
+                            "keyword": "dims",
+                            "enable": true
                         }
                     }
                 }
             },
-            "name": "141.164.35.166",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
             "enable": true
         },
         {
             "listen": "*:80",
-            "origin": {
-                "address": [
-                    "image.winesoft.com"
-                ],
-                "protocol": "http"
-            },
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 13,
                             "enable": true,
                             "minSourceSize": 0,
+                            "maxSourceSize": 14,
                             "keyword": "dims"
                         }
                     }
                 }
+            },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "image.winesoft.com"
+                ]
             },
             "name": "image.winesoft.com",
             "enable": true
