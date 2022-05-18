@@ -7,41 +7,30 @@
     "hosting": [
         {
             "listen": "*:80",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
             "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "demo.winesoft.co.kr.origin.m2",
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                },
                 "contents": {
                     "dims": {
                         "meta": {
+                            "keyword": "dims",
                             "enable": true,
                             "minSourceSize": 0,
-                            "keyword": "dims",
                             "maxSourceSize": 19
                         }
                     }
                 }
-            },
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "127.0.0.1"
-                ]
             },
             "name": "141.164.35.166",
             "enable": true
         },
         {
             "listen": "*:80",
+            "name": "demo.winesoft.co.kr.origin.m2",
             "functions": {
                 "network": {
                     "http": {
@@ -62,7 +51,6 @@
                 ],
                 "protocol": "http"
             },
-            "name": "demo.winesoft.co.kr.origin.m2",
             "enable": true
         },
         {
@@ -76,11 +64,11 @@
             },
             "fallback": {
                 "next": "demo.winesoft.co.kr.second.origin.m2",
+                "enable": true,
                 "matchingList": [
                     "4xx",
                     "5xx"
-                ],
-                "enable": true
+                ]
             },
             "enable": true
         },
@@ -101,10 +89,10 @@
                 }
             },
             "origin": {
-                "protocol": "http",
                 "address": [
                     "m2.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
             "name": "demo.winesoft.co.kr.second.origin.m2",
             "enable": true
