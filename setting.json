@@ -4,7 +4,38 @@
         "hostName": "example",
         "admin": "admin@example.com"
     },
-    "hosting": [],
+    "hosting": [
+        {
+            "listen": "*:80",
+            "name": "141.164.35.166",
+            "https": [
+                {
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-cec9ec32-8f63-466e-8125-6566c7580c09?generation=1653290446556704&alt=media",
+                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-92813a84-d18f-4b3f-8ac4-2e99e7353e44?generation=1653290451836080&alt=media",
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-bfde7594-8b11-47fe-9525-92aa454cc2f2?generation=1653290449020328&alt=media"
+                }
+            ],
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 10,
+                            "enable": true,
+                            "keyword": "dims",
+                            "minSourceSize": 0
+                        }
+                    }
+                }
+            },
+            "enable": true
+        }
+    ],
     "env": {
         "log": {
             "info": {
