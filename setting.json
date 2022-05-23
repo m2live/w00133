@@ -7,48 +7,25 @@
     "hosting": [
         {
             "listen": "*:80",
-            "name": "141.164.35.166",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "maxSourceSize": 20,
-                            "minSourceSize": 0,
-                            "keyword": "dims",
-                            "enable": true
-                        }
-                    }
-                }
-            },
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
+                ]
             },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "enable": true,
                             "minSourceSize": 0,
-                            "maxSourceSize": 14,
+                            "enable": true,
+                            "maxSourceSize": 20,
                             "keyword": "dims"
                         }
                     }
                 }
             },
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "image.winesoft.com"
-                ]
-            },
-            "name": "image.winesoft.com",
+            "name": "141.164.35.166",
             "enable": true
         }
     ],
