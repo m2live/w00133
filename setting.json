@@ -8,47 +8,54 @@
         {
             "listen": "*:80",
             "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims2",
-                            "minSourceSize": 0,
-                            "maxSourceSize": 11,
-                            "enable": true
-                        }
-                    }
-                },
                 "network": {
                     "http": {
                         "backEnd": {
                             "headers": {
                                 "host": {
-                                    "value": "demo.winesoft.co.kr.origin.m2",
-                                    "enable": true
+                                    "enable": true,
+                                    "value": "demo.winesoft.co.kr.origin.m2"
                                 }
                             }
                         }
                     }
+                },
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
+                            "keyword": "dims2",
+                            "enable": true,
+                            "maxSourceSize": 10
+                        },
+                        "composite": [
+                            {
+                                "name": "name",
+                                "gravity": "c",
+                                "file": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-93eeab9c-c935-4440-86d0-1cd5e6fa5777?generation=1653988751802149&alt=media",
+                                "dissolve": 50
+                            }
+                        ]
+                    }
                 }
             },
-            "name": "image.winesoft.com",
+            "name": "158.247.203.38",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "127.0.0.1"
-                ]
+                ],
+                "protocol": "http"
             },
-            "https": [
-                {
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-1b754c9e-5c24-408b-a6a6-114e3a559af4?generation=1653890142143668&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-378fbaec-5370-4ab7-8441-33931f056c0f?generation=1653890145615946&alt=media",
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-116f6787-1325-4fdf-b710-d26e2c26d997?generation=1653890149222768&alt=media"
-                }
-            ],
             "enable": true
         },
         {
             "listen": "*:80",
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
             "name": "demo.winesoft.co.kr.origin.m2",
             "functions": {
                 "network": {
@@ -62,31 +69,12 @@
                             }
                         }
                     }
-                },
-                "backend": {
-                    "aws_s3": {
-                        "meta": {
-                            "keyword": "aws_s4"
-                        }
-                    }
                 }
-            },
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
             },
             "enable": true
         },
         {
             "listen": "*:80",
-            "urlRewrites": [
-                {
-                    "pattern": "^demo.winesoft.co.kr.first.origin.m2/(.+)\\\\?refresh=true",
-                    "replace": "demo.winesoft.co.kr.second.origin.m2/#1/aws_s3/put/1"
-                }
-            ],
             "name": "demo.winesoft.co.kr.first.origin.m2",
             "origin": {
                 "address": [
@@ -95,30 +83,23 @@
                 "protocol": "http"
             },
             "fallback": {
+                "next": "demo.winesoft.co.kr.second.origin.m2",
+                "enable": true,
                 "matchingList": [
                     "4xx",
                     "5xx"
-                ],
-                "enable": true,
-                "urlRewrites": [
-                    {
-                        "replace": "/#1/aws_s3/put/1",
-                        "pattern": "/(.*)"
-                    }
-                ],
-                "next": "demo.winesoft.co.kr.second.origin.m2"
+                ]
             },
             "enable": true
         },
         {
             "listen": "*:80",
             "origin": {
+                "protocol": "http",
                 "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
+                    "m2.winesoft.co.kr"
+                ]
             },
-            "name": "demo.winesoft.co.kr.second.origin.m2",
             "functions": {
                 "network": {
                     "http": {
@@ -131,25 +112,9 @@
                             }
                         }
                     }
-                },
-                "backend": {
-                    "aws_s3": {
-                        "endpoints": [
-                            {
-                                "name": "1",
-                                "accessKey": "4",
-                                "secretKey": "5",
-                                "region": "3",
-                                "bucket": "2"
-                            }
-                        ],
-                        "meta": {
-                            "keyword": "aws_s3",
-                            "enable": true
-                        }
-                    }
                 }
             },
+            "name": "demo.winesoft.co.kr.second.origin.m2",
             "enable": true
         }
     ],
