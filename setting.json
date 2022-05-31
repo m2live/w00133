@@ -850,6 +850,15 @@
                     "active": false
                 }
             }
+        },
+        "backend": {
+            "aws_s3": {
+                "meta": {
+                    "enable": false,
+                    "keyword": "aws_s3"
+                },
+                "endpoints": []
+            }
         }
     }
 }
