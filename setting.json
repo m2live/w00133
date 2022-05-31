@@ -7,6 +7,94 @@
     "hosting": [
         {
             "listen": "*:80",
+            "name": "158.247.203.38",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims2",
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "maxSourceSize": 10
+                        },
+                        "composite": [
+                            {
+                                "gravity": "c",
+                                "dissolve": 50,
+                                "name": "name",
+                                "file": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-93eeab9c-c935-4440-86d0-1cd5e6fa5777?generation=1653988751802149&alt=media"
+                            }
+                        ]
+                    }
+                },
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "demo.winesoft.co.kr.origin.m2",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "name": "demo.winesoft.co.kr.origin.m2",
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "demo.winesoft.co.kr.first.origin.m2",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "fallback": {
+                "next": "demo.winesoft.co.kr.second.origin.m2",
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "enable": true
+            },
+            "name": "demo.winesoft.co.kr.first.origin.m2",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "name": "demo.winesoft.co.kr.second.origin.m2",
             "functions": {
                 "network": {
                     "http": {
@@ -14,7 +102,37 @@
                             "headers": {
                                 "host": {
                                     "enable": true,
-                                    "value": "demo.winesoft.co.kr.origin.m2"
+                                    "value": "demo.winesoft.co.kr"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "address": [
+                    "m2.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "demo.winesoft.co.kr.origin.m2",
+                                    "enable": true
                                 }
                             }
                         }
@@ -23,98 +141,15 @@
                 "contents": {
                     "dims": {
                         "meta": {
+                            "maxSourceSize": 10,
                             "minSourceSize": 0,
-                            "keyword": "dims2",
                             "enable": true,
-                            "maxSourceSize": 10
-                        },
-                        "composite": [
-                            {
-                                "name": "name",
-                                "gravity": "c",
-                                "file": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-93eeab9c-c935-4440-86d0-1cd5e6fa5777?generation=1653988751802149&alt=media",
-                                "dissolve": 50
-                            }
-                        ]
-                    }
-                }
-            },
-            "name": "158.247.203.38",
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
-            },
-            "name": "demo.winesoft.co.kr.origin.m2",
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "enable": true,
-                                    "value": "demo.winesoft.co.kr.first.origin.m2"
-                                }
-                            }
+                            "keyword": "dims"
                         }
                     }
                 }
             },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "name": "demo.winesoft.co.kr.first.origin.m2",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "fallback": {
-                "next": "demo.winesoft.co.kr.second.origin.m2",
-                "enable": true,
-                "matchingList": [
-                    "4xx",
-                    "5xx"
-                ]
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "m2.winesoft.co.kr"
-                ]
-            },
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "demo.winesoft.co.kr",
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "name": "demo.winesoft.co.kr.second.origin.m2",
+            "name": "141.164.35.166",
             "enable": true
         }
     ],
