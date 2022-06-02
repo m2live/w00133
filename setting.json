@@ -143,7 +143,7 @@
             "urlRewrites": [
                 {
                     "replace": "demo.winesoft.co.kr.second.origin.m2/#1/dims/resize/20/aws_s3/put/mystorage",
-                    "pattern": "^demo.winesoft.co.kr.first.origin.m2/(.+)\\\\?refresh=true"
+                    "pattern": "^demo.winesoft.co.kr.first.origin.m2/(.+)\\?refresh=true"
                 }
             ],
             "mode": {
