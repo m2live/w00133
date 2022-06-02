@@ -4,7 +4,141 @@
         "hostName": "example",
         "admin": "admin@example.com"
     },
-    "hosting": [],
+    "hosting": [
+        {
+            "listen": "*:80",
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "name": "141.164.35.166",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "demo.winesoft.co.kr.origin.m2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 2,
+                            "keyword": "dims",
+                            "enable": true,
+                            "minSourceSize": 0
+                        }
+                    }
+                }
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "demo.winesoft.co.kr.first.origin.m2",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "name": "demo.winesoft.co.kr.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "fallback": {
+                "next": "demo.winesoft.co.kr.second.origin.m2",
+                "urlRewrites": [
+                    {
+                        "replace": "#1/aws_s3/put/TEST",
+                        "pattern": "(.*)"
+                    }
+                ],
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "enable": true
+            },
+            "name": "demo.winesoft.co.kr.first.origin.m2",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "m2.winesoft.co.kr"
+                ]
+            },
+            "urlRewrites": [
+                {
+                    "pattern": "^demo.winesoft.co.kr.first.origin.m2/(.+)\\\\?refresh=true",
+                    "replace": "demo.winesoft.co.kr.second.origin.m2/#1/aws_s3/put/TEST"
+                }
+            ],
+            "name": "demo.winesoft.co.kr.second.origin.m2",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "demo.winesoft.co.kr"
+                                }
+                            }
+                        }
+                    }
+                },
+                "backend": {
+                    "aws_s3": {
+                        "endpoints": [
+                            {
+                                "secretKey": "cqavyWKiejqMc4Kakf6lPJ6mETMPAOfnC5LBmj4L",
+                                "name": "TEST",
+                                "region": "ap-northeast-2",
+                                "bucket": "m2fw-test-origin",
+                                "accessKey": "AKIAUPBJJDGA57S4RU3X"
+                            }
+                        ],
+                        "meta": {
+                            "enable": true,
+                            "keyword": "aws_s3"
+                        }
+                    }
+                }
+            },
+            "enable": true
+        }
+    ],
     "env": {
         "log": {
             "info": {
