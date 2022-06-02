@@ -562,16 +562,7 @@
                 "gif": {
                     "firstFrameOnly": false,
                     "selectMinSize": false
-                },
-                "composite": [
-                    {
-                        "name": "water_ratio",
-                        "file": "/img/wmark_s.png",
-                        "gravity": "c",
-                        "geometry": "+0+0",
-                        "dissolve": 50
-                    }
-                ]
+                }
             }
         },
         "network": {
