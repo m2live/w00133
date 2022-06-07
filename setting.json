@@ -7,7 +7,6 @@
     "hosting": [
         {
             "listen": "*:80",
-            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "127.0.0.1"
@@ -15,106 +14,12 @@
                 "protocol": "http"
             },
             "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "maxSourceSize": 10,
-                            "enable": true,
-                            "keyword": "dims",
-                            "minSourceSize": 0
-                        }
-                    }
-                },
                 "network": {
                     "http": {
                         "backEnd": {
                             "headers": {
                                 "host": {
-                                    "enable": true,
-                                    "value": "demo.winesoft.co.kr.origin.m2"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "mode": {
-                "instant": true
-            },
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "127.0.0.1"
-                ]
-            },
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "enable": true,
-                                    "value": "demo.winesoft.co.kr.first.origin.m2"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "name": "demo.winesoft.co.kr.origin.m2",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "mode": {
-                "instant": true
-            },
-            "fallback": {
-                "urlRewrites": [
-                    {
-                        "pattern": "(.*)\\?(.*)",
-                        "replace": "#1/dims/resize/400/aws_s3/put/mystorage?#2"
-                    },
-                    {
-                        "pattern": "(.*)",
-                        "replace": "#1/dims/resize/400/aws_s3/put/mystorage"
-                    }
-                ],
-                "matchingList": [
-                    "4xx",
-                    "5xx"
-                ],
-                "next": "demo.winesoft.co.kr.second.origin.m2",
-                "enable": true
-            },
-            "name": "demo.winesoft.co.kr.first.origin.m2",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "m2.winesoft.co.kr"
-                ]
-            },
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "m2.winesoft.co.kr",
+                                    "value": "demo.winesoft.co.kr.origin.m2",
                                     "enable": true
                                 }
                             }
@@ -124,22 +29,89 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 10,
+                            "minSourceSize": 0,
+                            "maxSourceSize": 11,
                             "keyword": "dims",
-                            "enable": true,
-                            "minSourceSize": 0
+                            "enable": true
                         }
                     }
-                },
+                }
+            },
+            "name": "141.164.35.166",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "demo.winesoft.co.kr.first.origin.m2",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mode": {
+                "instant": true
+            },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "name": "demo.winesoft.co.kr.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "mode": {
+                "instant": true
+            },
+            "name": "demo.winesoft.co.kr.first.origin.m2",
+            "fallback": {
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "urlRewrites": [
+                    {
+                        "replace": "#1/dims/resize/400/aws_s3/put/mystorage?#2",
+                        "pattern": "(.*)\\?(.*)"
+                    },
+                    {
+                        "replace": "#1/dims/resize/400/aws_s3/put/mystorage",
+                        "pattern": "(.*)"
+                    }
+                ],
+                "enable": true,
+                "next": "demo.winesoft.co.kr.second.origin.m2"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
                 "backend": {
                     "aws_s3": {
                         "endpoints": [
                             {
-                                "name": "mystorage",
-                                "bucket": "m2fw-test-origin",
-                                "secretKey": "cqavyWKiejqMc4Kakf6lPJ6mETMPAOfnC5LBmj4L",
                                 "region": "ap-northeast-2",
-                                "accessKey": "AKIAUPBJJDGA57S4RU3X"
+                                "name": "mystorage",
+                                "accessKey": "AKIAUPBJJDGA57S4RU3X",
+                                "secretKey": "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",
+                                "bucket": "m2fw-test-origin"
                             }
                         ],
                         "meta": {
@@ -147,15 +119,43 @@
                             "enable": true
                         }
                     }
+                },
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "m2.winesoft.co.kr"
+                                }
+                            }
+                        }
+                    }
+                },
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 10,
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "keyword": "dims"
+                        }
+                    }
                 }
             },
-            "name": "demo.winesoft.co.kr.second.origin.m2",
             "urlRewrites": [
                 {
-                    "replace": "demo.winesoft.co.kr.second.origin.m2/#1/dims/resize/400/aws_s3/put/mystorage",
-                    "pattern": "^demo.winesoft.co.kr.first.origin.m2/(.+)\\\\?refresh=true"
+                    "pattern": "^demo.winesoft.co.kr.first.origin.m2/(.+)\\\\?refresh=true",
+                    "replace": "demo.winesoft.co.kr.second.origin.m2/#1/dims/resize/400/aws_s3/put/mystorage"
                 }
             ],
+            "origin": {
+                "address": [
+                    "m2.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "name": "demo.winesoft.co.kr.second.origin.m2",
             "mode": {
                 "instant": true
             },
@@ -570,7 +570,7 @@
                 "composite": [
                     {
                         "name": "water_ratio",
-                        "path": "/img/wmark_s.png",
+                        "file": "/img/wmark_s.png",
                         "gravity": "c",
                         "geometry": "+0+0",
                         "dissolve": 50
