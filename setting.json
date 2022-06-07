@@ -570,7 +570,7 @@
                 "composite": [
                     {
                         "name": "water_ratio",
-                        "file": "/img/wmark_s.png",
+                        "path": "/img/wmark_s.png",
                         "gravity": "c",
                         "geometry": "+0+0",
                         "dissolve": 50
