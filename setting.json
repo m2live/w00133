@@ -11,20 +11,43 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 10,
-                            "keyword": "dims",
                             "enable": true,
-                            "minSourceSize": 0
+                            "minSourceSize": 0,
+                            "maxSourceSize": 10,
+                            "keyword": "dims"
                         }
                     }
                 }
             },
             "name": "141.164.35.166",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 11,
+                            "enable": true,
+                            "keyword": "dims",
+                            "minSourceSize": 0
+                        }
+                    }
+                }
+            },
+            "name": "image.winesoft.com",
+            "origin": {
+                "address": [
+                    "image.winesoft.com"
+                ],
+                "protocol": "http"
             },
             "enable": true
         }
