@@ -7,16 +7,17 @@
     "hosting": [
         {
             "listen": "*:80",
+            "name": "141.164.35.166",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
             "functions": {
                 "network": {
                     "http": {
                         "backEnd": {
-                            "session": {
-                                "connectTimeout": 3,
-                                "reuseTimeout": 60,
-                                "receiveTimeout": 300,
-                                "busyCount": 0
-                            },
                             "headers": {
                                 "host": {
                                     "enable": true,
@@ -27,6 +28,12 @@
                                 "exclusion": {
                                     "count": 3
                                 }
+                            },
+                            "session": {
+                                "receiveTimeout": 300,
+                                "reuseTimeout": 60,
+                                "connectTimeout": 3,
+                                "busyCount": 0
                             }
                         }
                     }
@@ -34,20 +41,13 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
-                            "maxSourceSize": 10,
+                            "enable": true,
                             "minSourceSize": 0,
-                            "enable": true
+                            "maxSourceSize": 10,
+                            "keyword": "dims"
                         }
                     }
                 }
-            },
-            "name": "141.164.35.166",
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
             },
             "enable": true
         },
@@ -59,20 +59,21 @@
                 ],
                 "protocol": "http"
             },
+            "name": "141.164.35.166.origin.m2",
             "functions": {
                 "network": {
                     "http": {
                         "backEnd": {
+                            "session": {
+                                "busyCount": 0,
+                                "receiveTimeout": 300,
+                                "reuseTimeout": 60,
+                                "connectTimeout": 3
+                            },
                             "health": {
                                 "exclusion": {
                                     "count": 3
                                 }
-                            },
-                            "session": {
-                                "connectTimeout": 3,
-                                "reuseTimeout": 60,
-                                "receiveTimeout": 300,
-                                "busyCount": 0
                             },
                             "headers": {
                                 "host": {
@@ -84,7 +85,6 @@
                     }
                 }
             },
-            "name": "141.164.35.166.origin.m2",
             "mode": {
                 "instant": true
             },
@@ -93,12 +93,11 @@
         {
             "listen": "*:80",
             "fallback": {
-                "next": "141.164.35.166.second.origin.m2",
-                "enable": true,
                 "matchingList": [
                     "4xx",
                     "5xx"
                 ],
+                "enable": true,
                 "urlRewrites": [
                     {
                         "pattern": "(.*)\\?(.*)",
@@ -108,48 +107,45 @@
                         "pattern": "(.*)",
                         "replace": "#1/dims/strip/true/aws_s3/put/m2s3"
                     }
-                ]
+                ],
+                "next": "141.164.35.166.second.origin.m2"
             },
-            "name": "141.164.35.166.first.origin.m2",
             "mode": {
                 "instant": true
             },
+            "name": "141.164.35.166.first.origin.m2",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
             "enable": true
         },
         {
             "listen": "*:80",
+            "origin": {
+                "address": [
+                    "m2.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
             "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "maxSourceSize": 10,
-                            "enable": true,
-                            "minSourceSize": 0,
-                            "keyword": "dims"
-                        }
-                    }
-                },
                 "backend": {
                     "aws_s3": {
-                        "endpoints": [
-                            {
-                                "region": "ap-northeast-2",
-                                "name": "m2s3",
-                                "secretKey": "cqavyWKiejqMc4Kakf6lPJ6mETMPAOfnC5LBmj4L",
-                                "accessKey": "AKIAUPBJJDGA57S4RU3X",
-                                "bucket": "s3-config-sync"
-                            }
-                        ],
                         "meta": {
                             "enable": true,
                             "keyword": "aws_s3"
-                        }
+                        },
+                        "endpoints": [
+                            {
+                                "region": "ap-northeast-2",
+                                "secretKey": "cqavyWKiejqMc4Kakf6lPJ6mETMPAOfnC5LBmj4L",
+                                "name": "m2s3",
+                                "accessKey": "AKIAUPBJJDGA57S4RU3X",
+                                "bucket": "s3-config-sync"
+                            }
+                        ]
                     }
                 },
                 "network": {
@@ -163,22 +159,204 @@
                             }
                         }
                     }
+                },
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 10,
+                            "keyword": "dims",
+                            "enable": true,
+                            "minSourceSize": 0
+                        }
+                    }
                 }
-            },
-            "name": "141.164.35.166.second.origin.m2",
-            "origin": {
-                "address": [
-                    "m2.winesoft.co.kr"
-                ],
-                "protocol": "http"
             },
             "mode": {
                 "instant": true
             },
             "urlRewrites": [
                 {
-                    "pattern": "^141.164.35.166.first.origin.m2/(.+)\\?refresh=true",
-                    "replace": "141.164.35.166.second.origin.m2/#1/dims/strip/true/aws_s3/put/m2s3"
+                    "replace": "141.164.35.166.second.origin.m2/#1/dims/strip/true/aws_s3/put/m2s3",
+                    "pattern": "^141.164.35.166.first.origin.m2/(.+)\\?refresh=true"
+                }
+            ],
+            "name": "141.164.35.166.second.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "maxSourceSize": 10,
+                            "minSourceSize": 0,
+                            "enable": true
+                        }
+                    }
+                },
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "health": {
+                                "exclusion": {
+                                    "count": 3
+                                }
+                            },
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "image.winesoft.com.origin.m2"
+                                }
+                            },
+                            "session": {
+                                "reuseTimeout": 60,
+                                "busyCount": 0,
+                                "connectTimeout": 3,
+                                "receiveTimeout": 300
+                            }
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "name": "image.winesoft.com",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "127.0.0.1"
+                ]
+            },
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "health": {
+                                "exclusion": {
+                                    "count": 3
+                                }
+                            },
+                            "session": {
+                                "receiveTimeout": 300,
+                                "reuseTimeout": 60,
+                                "connectTimeout": 3,
+                                "busyCount": 0
+                            },
+                            "headers": {
+                                "host": {
+                                    "value": "image.winesoft.com.first.origin.m2",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mode": {
+                "instant": true
+            },
+            "name": "image.winesoft.com.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "fallback": {
+                "next": "image.winesoft.com.second.origin.m2",
+                "enable": true,
+                "urlRewrites": [
+                    {
+                        "pattern": "(.*)\\?(.*)",
+                        "replace": "#1/dims/strip/true/aws_s3/put/a?#2"
+                    },
+                    {
+                        "replace": "#1/dims/strip/true/aws_s3/put/a",
+                        "pattern": "(.*)"
+                    }
+                ],
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ]
+            },
+            "name": "image.winesoft.com.first.origin.m2",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "mode": {
+                "instant": true
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 10,
+                            "enable": true,
+                            "keyword": "dims",
+                            "minSourceSize": 0
+                        }
+                    }
+                },
+                "backend": {
+                    "aws_s3": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "aws_s3"
+                        },
+                        "endpoints": [
+                            {
+                                "region": "c",
+                                "bucket": "b",
+                                "name": "a",
+                                "accessKey": "d",
+                                "secretKey": "e"
+                            }
+                        ]
+                    }
+                },
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "image.winesoft.com",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mode": {
+                "instant": true
+            },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "m2.winesoft.co.kr"
+                ]
+            },
+            "name": "image.winesoft.com.second.origin.m2",
+            "urlRewrites": [
+                {
+                    "replace": "image.winesoft.com.second.origin.m2/#1/dims/strip/true/aws_s3/put/a",
+                    "pattern": "^image.winesoft.com.first.origin.m2/(.+)\\?refresh=true"
                 }
             ],
             "enable": true
@@ -592,6 +770,7 @@
                 "composite": [
                     {
                         "name": "water_ratio",
+                        "file": "error.png",
                         "path": "/img/wmark_s.png",
                         "gravity": "c",
                         "geometry": "+0+0",
