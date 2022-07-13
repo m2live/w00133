@@ -113,7 +113,9 @@
             "http2": {
                 "enable": true,
                 "concurrentStreamMaxCount": 10,
-                "keepAliveSec": 10
+                "keepAliveSec": 10,
+                "maxRequestHeaderFields": 200,
+                "maxResponseHeaderFields": 500
             },
             "pipelineSession": {
                 "internalTimeout": 10,
@@ -127,13 +129,23 @@
         },
         "management": {
             "api": {
-                "port": 10040
+                "port": 10040,
+                "defaultRole": "admin",
+                "multipartName": "settingFile"
             }
         },
         "properties": {
+            "live": {
+                "enable": true
+            },
             "masterProcess": {
                 "enable": true,
                 "title": "m2m"
+            },
+            "coreWorkers": {
+                "enable": true,
+                "processName": "m2c",
+                "count": 0
             },
             "inspection": {
                 "process": {
@@ -223,6 +235,18 @@
                     "age": 1,
                     "emptyDir": "delete",
                     "fileCount": 0
+                }
+            }
+        },
+        "sync": {
+            "enable": false,
+            "setting": {
+                "enable": false,
+                "schedule": "*/15 * * * * *",
+                "timeout": 5,
+                "endpoints": {
+                    "download": "",
+                    "report": ""
                 }
             }
         }
