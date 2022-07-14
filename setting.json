@@ -12,50 +12,103 @@
                     "dims": {
                         "meta": {
                             "minSourceSize": 5,
-                            "enable": true,
                             "keyword": "dims",
-                            "maxSourceSize": 10
+                            "maxSourceSize": 10,
+                            "enable": true
                         }
                     }
                 }
             },
             "name": "image.winesoft.com",
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
+                ]
             },
             "enable": true
         },
         {
             "listen": "*:80",
+            "name": "ssl.winesoft.co.kr",
             "https": [
                 {
                     "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media",
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media"
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media",
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media"
                 }
             ],
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
+                ]
             },
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
+                            "maxSourceSize": 10,
                             "keyword": "dims",
                             "minSourceSize": 0,
-                            "enable": true,
-                            "maxSourceSize": 10
+                            "enable": true
+                        }
+                    }
+                },
+                "network": {
+                    "http": {
+                        "frontEnd": {
+                            "headers": {
+                                "modify": {
+                                    "matchingList": [
+                                        {
+                                            "mode": "set",
+                                            "pattern": "/*",
+                                            "header": "$RES[Access-Control-Allow-Origin: *]"
+                                        },
+                                        {
+                                            "mode": "set",
+                                            "header": "$RES[Access-Control-Allow-Headers: *]",
+                                            "pattern": "/*"
+                                        },
+                                        {
+                                            "header": "$RES[Access-Control-Allow-Methods: *]",
+                                            "pattern": "/*",
+                                            "mode": "set"
+                                        },
+                                        {
+                                            "header": "$RES[Access-Control-Expose-Headers: ]",
+                                            "pattern": "/*",
+                                            "mode": "set"
+                                        },
+                                        {
+                                            "pattern": "/*",
+                                            "mode": "set",
+                                            "header": "$RES[Access-Control-Max-Age: 600]"
+                                        },
+                                        {
+                                            "mode": "set",
+                                            "pattern": "/*",
+                                            "header": "$RES[Access-Control-Allow-Credentials: false]"
+                                        }
+                                    ],
+                                    "enable": true
+                                }
+                            },
+                            "accessControl": {
+                                "matchingList": [
+                                    {
+                                        "action": "redirect",
+                                        "denialCode": "https://#HOST#URL",
+                                        "pattern": "$PROTOCOL[HTTP]"
+                                    }
+                                ],
+                                "enable": true
+                            }
                         }
                     }
                 }
             },
-            "name": "141.164.35.166",
             "enable": true
         }
     ],
