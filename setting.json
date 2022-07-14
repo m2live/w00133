@@ -11,9 +11,9 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "minSourceSize": 5,
                             "keyword": "dims",
                             "maxSourceSize": 10,
+                            "minSourceSize": 5,
                             "enable": true
                         }
                     }
@@ -21,16 +21,15 @@
             },
             "name": "image.winesoft.com",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
             "enable": true
         },
         {
             "listen": "*:80",
-            "name": "ssl.winesoft.co.kr",
             "https": [
                 {
                     "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
@@ -48,8 +47,8 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 10,
                             "keyword": "dims",
+                            "maxSourceSize": 12,
                             "minSourceSize": 0,
                             "enable": true
                         }
@@ -58,6 +57,16 @@
                 "network": {
                     "http": {
                         "frontEnd": {
+                            "accessControl": {
+                                "enable": true,
+                                "matchingList": [
+                                    {
+                                        "action": "redirect",
+                                        "denialCode": "https://#HOST#URL",
+                                        "pattern": "$PROTOCOL[HTTP]"
+                                    }
+                                ]
+                            },
                             "headers": {
                                 "modify": {
                                     "matchingList": [
@@ -67,19 +76,19 @@
                                             "header": "$RES[Access-Control-Allow-Origin: *]"
                                         },
                                         {
-                                            "mode": "set",
                                             "header": "$RES[Access-Control-Allow-Headers: *]",
-                                            "pattern": "/*"
-                                        },
-                                        {
-                                            "header": "$RES[Access-Control-Allow-Methods: *]",
                                             "pattern": "/*",
                                             "mode": "set"
+                                        },
+                                        {
+                                            "pattern": "/*",
+                                            "mode": "set",
+                                            "header": "$RES[Access-Control-Allow-Methods: *]"
                                         },
                                         {
                                             "header": "$RES[Access-Control-Expose-Headers: ]",
-                                            "pattern": "/*",
-                                            "mode": "set"
+                                            "mode": "set",
+                                            "pattern": "/*"
                                         },
                                         {
                                             "pattern": "/*",
@@ -87,28 +96,19 @@
                                             "header": "$RES[Access-Control-Max-Age: 600]"
                                         },
                                         {
-                                            "mode": "set",
                                             "pattern": "/*",
+                                            "mode": "set",
                                             "header": "$RES[Access-Control-Allow-Credentials: false]"
                                         }
                                     ],
                                     "enable": true
                                 }
-                            },
-                            "accessControl": {
-                                "matchingList": [
-                                    {
-                                        "action": "redirect",
-                                        "denialCode": "https://#HOST#URL",
-                                        "pattern": "$PROTOCOL[HTTP]"
-                                    }
-                                ],
-                                "enable": true
                             }
                         }
                     }
                 }
             },
+            "name": "ssl.winesoft.co.kr",
             "enable": true
         }
     ],
