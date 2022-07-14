@@ -7,21 +7,21 @@
     "hosting": [
         {
             "listen": "*:80",
-            "name": "image.winesoft.com",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
             },
+            "name": "image.winesoft.com",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "minSourceSize": 5,
-                            "maxSourceSize": 10,
                             "keyword": "dims",
-                            "enable": true
+                            "maxSourceSize": 10,
+                            "enable": true,
+                            "minSourceSize": 5
                         }
                     }
                 }
@@ -36,30 +36,40 @@
                 ],
                 "protocol": "http"
             },
-            "name": "ssl.winesoft.co.kr",
             "https": [
                 {
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media",
                     "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media",
                     "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media"
                 }
             ],
+            "name": "ssl.winesoft.co.kr",
             "functions": {
                 "network": {
                     "http": {
                         "frontEnd": {
+                            "accessControl": {
+                                "enable": true,
+                                "matchingList": [
+                                    {
+                                        "pattern": "$PROTOCOL[HTTP]",
+                                        "action": "redirect",
+                                        "denialCode": "https://#HOST#URL"
+                                    }
+                                ]
+                            },
                             "headers": {
                                 "modify": {
                                     "enable": true,
                                     "matchingList": [
                                         {
+                                            "header": "$RES[Access-Control-Allow-Origin: 192.168.0.123]",
                                             "pattern": "/*",
-                                            "mode": "set",
-                                            "header": "$RES[Access-Control-Allow-Origin: *]"
+                                            "mode": "set"
                                         },
                                         {
-                                            "header": "$RES[Access-Control-Allow-Headers: *]",
                                             "pattern": "/*",
+                                            "header": "$RES[Access-Control-Allow-Headers: *]",
                                             "mode": "set"
                                         },
                                         {
@@ -68,32 +78,22 @@
                                             "pattern": "/*"
                                         },
                                         {
+                                            "pattern": "/*",
                                             "header": "$RES[Access-Control-Expose-Headers: ]",
-                                            "mode": "set",
-                                            "pattern": "/*"
+                                            "mode": "set"
                                         },
                                         {
-                                            "mode": "set",
                                             "pattern": "/*",
+                                            "mode": "set",
                                             "header": "$RES[Access-Control-Max-Age: 600]"
                                         },
                                         {
-                                            "header": "$RES[Access-Control-Allow-Credentials: false]",
                                             "mode": "set",
+                                            "header": "$RES[Access-Control-Allow-Credentials: true]",
                                             "pattern": "/*"
                                         }
                                     ]
                                 }
-                            },
-                            "accessControl": {
-                                "enable": true,
-                                "matchingList": [
-                                    {
-                                        "action": "redirect",
-                                        "pattern": "$PROTOCOL[HTTP]",
-                                        "denialCode": "https://#HOST#URL"
-                                    }
-                                ]
                             }
                         }
                     }
@@ -101,10 +101,10 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
-                            "enable": true,
+                            "minSourceSize": 0,
                             "maxSourceSize": 10,
-                            "minSourceSize": 0
+                            "enable": true,
+                            "keyword": "dims"
                         }
                     }
                 }
