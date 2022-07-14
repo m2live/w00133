@@ -7,6 +7,18 @@
     "hosting": [
         {
             "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 5,
+                            "enable": true,
+                            "maxSourceSize": 10,
+                            "keyword": "dims"
+                        }
+                    }
+                }
+            },
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
@@ -14,35 +26,10 @@
                 "protocol": "http"
             },
             "name": "image.winesoft.com",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims",
-                            "maxSourceSize": 10,
-                            "enable": true,
-                            "minSourceSize": 5
-                        }
-                    }
-                }
-            },
             "enable": true
         },
         {
             "listen": "*:80",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "https": [
-                {
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media"
-                }
-            ],
             "name": "ssl.winesoft.co.kr",
             "functions": {
                 "network": {
@@ -52,47 +39,47 @@
                                 "enable": true,
                                 "matchingList": [
                                     {
-                                        "pattern": "$PROTOCOL[HTTP]",
                                         "action": "redirect",
+                                        "pattern": "$PROTOCOL[HTTP]",
                                         "denialCode": "https://#HOST#URL"
                                     }
                                 ]
                             },
                             "headers": {
                                 "modify": {
-                                    "enable": true,
                                     "matchingList": [
                                         {
-                                            "header": "$RES[Access-Control-Allow-Origin: 192.168.0.123]",
-                                            "pattern": "/*",
-                                            "mode": "set"
+                                            "header": "$RES[Access-Control-Allow-Origin: *]",
+                                            "mode": "set",
+                                            "pattern": "/*"
                                         },
                                         {
-                                            "pattern": "/*",
                                             "header": "$RES[Access-Control-Allow-Headers: *]",
+                                            "pattern": "/*",
                                             "mode": "set"
                                         },
                                         {
-                                            "mode": "set",
+                                            "pattern": "/*",
                                             "header": "$RES[Access-Control-Allow-Methods: *]",
-                                            "pattern": "/*"
+                                            "mode": "set"
+                                        },
+                                        {
+                                            "header": "$RES[Access-Control-Expose-Headers: ]",
+                                            "pattern": "/*",
+                                            "mode": "set"
                                         },
                                         {
                                             "pattern": "/*",
-                                            "header": "$RES[Access-Control-Expose-Headers: ]",
+                                            "header": "$RES[Access-Control-Max-Age: 600]",
                                             "mode": "set"
                                         },
                                         {
                                             "pattern": "/*",
                                             "mode": "set",
-                                            "header": "$RES[Access-Control-Max-Age: 600]"
-                                        },
-                                        {
-                                            "mode": "set",
-                                            "header": "$RES[Access-Control-Allow-Credentials: true]",
-                                            "pattern": "/*"
+                                            "header": "$RES[Access-Control-Allow-Credentials: false]"
                                         }
-                                    ]
+                                    ],
+                                    "enable": true
                                 }
                             }
                         }
@@ -101,13 +88,26 @@
                 "contents": {
                     "dims": {
                         "meta": {
+                            "enable": true,
                             "minSourceSize": 0,
                             "maxSourceSize": 10,
-                            "enable": true,
                             "keyword": "dims"
                         }
                     }
                 }
+            },
+            "https": [
+                {
+                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media",
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media"
+                }
+            ],
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
             },
             "enable": true
         }
