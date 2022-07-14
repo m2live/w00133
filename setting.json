@@ -7,79 +7,85 @@
     "hosting": [
         {
             "listen": "*:80",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
             "name": "image.winesoft.com",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 10,
                             "enable": true,
+                            "maxSourceSize": 10,
                             "keyword": "dims",
                             "minSourceSize": 5
                         }
                     }
                 }
             },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
             "enable": true
         },
         {
             "listen": "*:80",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
             "functions": {
                 "network": {
                     "http": {
                         "frontEnd": {
+                            "accessControl": {
+                                "enable": true,
+                                "matchingList": [
+                                    {
+                                        "denialCode": "https://#HOST#URL",
+                                        "action": "redirect",
+                                        "pattern": "$PROTOCOL[HTTP]"
+                                    }
+                                ]
+                            },
                             "headers": {
                                 "modify": {
-                                    "enable": true,
                                     "matchingList": [
                                         {
                                             "header": "$RES[Access-Control-Allow-Origin: *]",
-                                            "mode": "set",
-                                            "pattern": "/*"
-                                        },
-                                        {
                                             "pattern": "/*",
-                                            "header": "$RES[Access-Control-Allow-Headers: *]",
                                             "mode": "set"
                                         },
                                         {
                                             "mode": "set",
+                                            "header": "$RES[Access-Control-Allow-Headers: *]",
+                                            "pattern": "/*"
+                                        },
+                                        {
+                                            "header": "$RES[Access-Control-Allow-Methods: *]",
                                             "pattern": "/*",
-                                            "header": "$RES[Access-Control-Allow-Methods: *]"
-                                        },
-                                        {
-                                            "mode": "set",
-                                            "header": "$RES[Access-Control-Expose-Headers: ]",
-                                            "pattern": "/*"
-                                        },
-                                        {
-                                            "header": "$RES[Access-Control-Max-Age: 600]",
-                                            "mode": "set",
-                                            "pattern": "/*"
+                                            "mode": "set"
                                         },
                                         {
                                             "pattern": "/*",
                                             "mode": "set",
-                                            "header": "$RES[Access-Control-Allow-Credentials: false]"
+                                            "header": "$RES[Access-Control-Expose-Headers: ]"
+                                        },
+                                        {
+                                            "pattern": "/*",
+                                            "mode": "set",
+                                            "header": "$RES[Access-Control-Max-Age: 600]"
+                                        },
+                                        {
+                                            "header": "$RES[Access-Control-Allow-Credentials: false]",
+                                            "pattern": "/*",
+                                            "mode": "set"
                                         }
-                                    ]
+                                    ],
+                                    "enable": true
                                 }
-                            },
-                            "accessControl": {
-                                "matchingList": [
-                                    {
-                                        "action": "redirect",
-                                        "pattern": "$PROTOCOL[HTTP]",
-                                        "denialCode": "https://#HOST#URL"
-                                    }
-                                ],
-                                "enable": true
                             }
                         }
                     }
@@ -87,24 +93,18 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "enable": true,
-                            "minSourceSize": 0,
                             "keyword": "dims",
-                            "maxSourceSize": 10
+                            "enable": true,
+                            "maxSourceSize": 11,
+                            "minSourceSize": 0
                         }
                     }
                 }
             },
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
             "https": [
                 {
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media",
                     "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media",
                     "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media"
                 }
             ],
