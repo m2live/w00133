@@ -7,42 +7,102 @@
     "hosting": [
         {
             "listen": "*:80",
-            "name": "image.winesoft.com",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
-                            "minSourceSize": 5,
                             "maxSourceSize": 10,
-                            "enable": true
+                            "enable": true,
+                            "keyword": "dims",
+                            "minSourceSize": 5
                         }
                     }
                 }
             },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "name": "image.winesoft.com",
             "enable": true
         },
         {
             "listen": "*:80",
-            "name": "ssl.winesoft.co.kr",
             "functions": {
+                "network": {
+                    "http": {
+                        "frontEnd": {
+                            "headers": {
+                                "modify": {
+                                    "enable": true,
+                                    "matchingList": [
+                                        {
+                                            "header": "$RES[Access-Control-Allow-Origin: *]",
+                                            "mode": "set",
+                                            "pattern": "/*"
+                                        },
+                                        {
+                                            "header": "$RES[Access-Control-Allow-Headers: *]",
+                                            "pattern": "/*",
+                                            "mode": "set"
+                                        },
+                                        {
+                                            "pattern": "/*",
+                                            "header": "$RES[Access-Control-Allow-Methods: *]",
+                                            "mode": "set"
+                                        },
+                                        {
+                                            "pattern": "/*",
+                                            "header": "$RES[Access-Control-Expose-Headers: ]",
+                                            "mode": "set"
+                                        },
+                                        {
+                                            "mode": "set",
+                                            "pattern": "/*",
+                                            "header": "$RES[Access-Control-Max-Age: 600]"
+                                        },
+                                        {
+                                            "pattern": "/*",
+                                            "mode": "set",
+                                            "header": "$RES[Access-Control-Allow-Credentials: false]"
+                                        }
+                                    ]
+                                }
+                            },
+                            "accessControl": {
+                                "enable": true,
+                                "matchingList": [
+                                    {
+                                        "denialCode": "https://#HOST#URL",
+                                        "action": "redirect",
+                                        "pattern": "$PROTOCOL[HTTP]"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
                 "contents": {
                     "dims": {
                         "meta": {
                             "minSourceSize": 0,
-                            "maxSourceSize": 11,
                             "keyword": "dims",
+                            "maxSourceSize": 11,
                             "enable": true
                         }
                     }
                 }
             },
+            "https": [
+                {
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media",
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media",
+                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media"
+                }
+            ],
+            "name": "ssl.winesoft.co.kr",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
