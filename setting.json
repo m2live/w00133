@@ -8,28 +8,6 @@
         {
             "listen": "*:80",
             "name": "image.winesoft.com",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "enable": true,
-                            "maxSourceSize": 10,
-                            "keyword": "dims",
-                            "minSourceSize": 5
-                        }
-                    }
-                }
-            },
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
@@ -37,78 +15,40 @@
                 "protocol": "http"
             },
             "functions": {
-                "network": {
-                    "http": {
-                        "frontEnd": {
-                            "accessControl": {
-                                "enable": true,
-                                "matchingList": [
-                                    {
-                                        "denialCode": "https://#HOST#URL",
-                                        "action": "redirect",
-                                        "pattern": "$PROTOCOL[HTTP]"
-                                    }
-                                ]
-                            },
-                            "headers": {
-                                "modify": {
-                                    "matchingList": [
-                                        {
-                                            "header": "$RES[Access-Control-Allow-Origin: *]",
-                                            "pattern": "/*",
-                                            "mode": "set"
-                                        },
-                                        {
-                                            "mode": "set",
-                                            "header": "$RES[Access-Control-Allow-Headers: *]",
-                                            "pattern": "/*"
-                                        },
-                                        {
-                                            "header": "$RES[Access-Control-Allow-Methods: *]",
-                                            "pattern": "/*",
-                                            "mode": "set"
-                                        },
-                                        {
-                                            "pattern": "/*",
-                                            "mode": "set",
-                                            "header": "$RES[Access-Control-Expose-Headers: ]"
-                                        },
-                                        {
-                                            "pattern": "/*",
-                                            "mode": "set",
-                                            "header": "$RES[Access-Control-Max-Age: 600]"
-                                        },
-                                        {
-                                            "header": "$RES[Access-Control-Allow-Credentials: false]",
-                                            "pattern": "/*",
-                                            "mode": "set"
-                                        }
-                                    ],
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                },
                 "contents": {
                     "dims": {
                         "meta": {
                             "keyword": "dims",
-                            "enable": true,
-                            "maxSourceSize": 11,
-                            "minSourceSize": 0
+                            "minSourceSize": 5,
+                            "maxSourceSize": 10,
+                            "enable": true
                         }
                     }
                 }
             },
-            "https": [
-                {
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-916ab8b3-4053-458c-808b-02e4951db614?generation=1657706733083137&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-fcc46af3-72f7-4b5c-94e6-e943baca3239?generation=1657706742905275&alt=media",
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-9275bac2-afb7-4042-977c-e6fcf62eba99?generation=1657706738823101&alt=media"
-                }
-            ],
+            "enable": true
+        },
+        {
+            "listen": "*:80",
             "name": "ssl.winesoft.co.kr",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
+                            "maxSourceSize": 11,
+                            "keyword": "dims",
+                            "enable": true
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
             "enable": true
         }
     ],
