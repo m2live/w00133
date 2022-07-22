@@ -164,9 +164,15 @@
                     "diskFailCount": 10,
                     "onCrash": "hang"
                 },
-                "disks": [],
+                "disks": [
+                    {
+                        "mount": "/user/cache1",
+                        "quota": 75,
+                        "quotaUnit": "size"
+                    }
+                ],
                 "cleanup": {
-                    "time": "02:00",
+                    "time": "03:00",
                     "age": 0,
                     "emptyDir": "delete",
                     "fileCount": 0,
@@ -235,12 +241,12 @@
         },
         "http": {
             "frontEnd": {
-                "recBufferSize": 8192
+                "recBufferSize": 4096
             }
         },
         "https": {
             "frontEnd": {
-                "enableSni": true
+                "enableSni": false
             }
         }
     },
@@ -858,7 +864,7 @@
         "operations": {
             "log": {
                 "meta": {
-                    "dir": "/m2log"
+                    "dir": "/m2live_log"
                 },
                 "access": {
                     "enable": true,
@@ -897,8 +903,7 @@
                     "retention": 10,
                     "compression": false,
                     "form": "json"
-                },
-                "dir": "/m2li"
+                }
             },
             "stats": {
                 "level": {
