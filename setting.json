@@ -230,7 +230,7 @@
                 "rolling": {
                     "size": 1
                 },
-                "retention": 10,
+                "retention": 5,
                 "compression": false
             },
             "deny": {
@@ -246,15 +246,23 @@
                 "rolling": {
                     "size": 1
                 },
-                "retention": 10,
+                "retention": 5,
                 "warning": false,
+                "compression": false
+            },
+            "system": {
+                "enable": true,
+                "rolling": {
+                    "size": 1
+                },
+                "retention": 5,
                 "compression": false
             }
         },
         "network": {
             "passiveSockets": {
                 "listenIps": [
-                    "0.0.0.0:80"
+                    "0.0.0.0"
                 ],
                 "maxCount": 80000,
                 "reopenRatio": 75
@@ -264,7 +272,10 @@
                     "recvBufferSize": 8192,
                     "initCount": 20000,
                     "increaseCount": 6000
-                }
+                },
+                "recvBufferSize": 8192,
+                "initCount": 20000,
+                "increaseCount": 6000
             },
             "https": {
                 "frontEnd": {
@@ -272,7 +283,10 @@
                     "enableSni": true,
                     "initCount": 200,
                     "increaseCount": 128
-                }
+                },
+                "enableSni": true,
+                "initCount": 20000,
+                "increaseCount": 6000
             },
             "http2": {
                 "enable": false,
@@ -289,6 +303,11 @@
                     "enable": true,
                     "reuseTimeout": 10
                 }
+            },
+            "geoip": {
+                "enable": false,
+                "ver": "geoip",
+                "path": "/var/m2/geopi/"
             }
         },
         "management": {
@@ -324,7 +343,8 @@
                             "info": {
                                 "connect": "myFirebase",
                                 "doc": "m2nodes/#m2live.nodeId/feedbacks"
-                            }
+                            },
+                            "uploadSetting": true
                         }
                     },
                     "heartbeat": {
@@ -343,13 +363,18 @@
                                 }
                             }
                         }
+                    },
+                    "purge": {
+                        "enable": false,
+                        "workerCount": 2
                     }
                 }
             },
             "api": {
                 "port": 10040,
                 "defaultRole": "admin",
-                "multipartName": "settingFile"
+                "multipartName": "settingFile",
+                "allowList": []
             }
         },
         "properties": {
@@ -363,7 +388,8 @@
             "coreWorkers": {
                 "enable": true,
                 "processName": "m2c",
-                "count": 0
+                "count": 0,
+                "memoryLimit": 500
             },
             "inspection": {
                 "process": {
@@ -379,12 +405,17 @@
                     "threshold": 5000,
                     "killTimeout": 3000
                 }
+            },
+            "memoryUsage": {
+                "totalUsableRatio": 100,
+                "workingRatio": 60,
+                "partition": "1:1"
             }
         },
         "puppeteer": {
             "mode": {
                 "headless": true,
-                "enableCache": false
+                "enableCache": true
             },
             "options": [
                 "--proxy-server=",
@@ -428,7 +459,8 @@
                 "cacheObjectSize": 900,
                 "enableEmergencyMode": false,
                 "enableSyncStale": true,
-                "writeCountSmallFile": 0
+                "writeCountSmallFile": 0,
+                "enableRrd": true
             },
             "preCacheControl": {
                 "enable": true,
@@ -450,9 +482,22 @@
                 ],
                 "cleanup": {
                     "time": "02:00",
-                    "age": 1,
+                    "age": 0,
                     "emptyDir": "delete",
-                    "fileCount": 0
+                    "fileCount": 0,
+                    "defaultDiskCleanupSize": 0
+                }
+            },
+            "purge": {
+                "mode": "sync",
+                "async": {
+                    "target": "pattern",
+                    "queueMax": "100000",
+                    "preCacheControl": {
+                        "enable": true,
+                        "matchMax": 5000,
+                        "matchFirstOnly": false
+                    }
                 }
             }
         },
@@ -466,6 +511,16 @@
                     "download": "",
                     "report": ""
                 }
+            }
+        },
+        "http": {
+            "frontEnd": {
+                "recBufferSize": 8192
+            }
+        },
+        "https": {
+            "frontEnd": {
+                "enableSni": true
             }
         }
     },
