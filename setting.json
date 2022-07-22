@@ -72,7 +72,7 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 100,
+                "totalUsableRatio": 75,
                 "workingRatio": 60,
                 "partition": "1:1"
             },
@@ -164,15 +164,9 @@
                     "diskFailCount": 10,
                     "onCrash": "hang"
                 },
-                "disks": [
-                    {
-                        "mount": "/user/cache1",
-                        "quota": 75,
-                        "quotaUnit": "size"
-                    }
-                ],
+                "disks": [],
                 "cleanup": {
-                    "time": "03:00",
+                    "time": "02:00",
                     "age": 0,
                     "emptyDir": "delete",
                     "fileCount": 0,
@@ -241,12 +235,12 @@
         },
         "http": {
             "frontEnd": {
-                "recBufferSize": 4096
+                "recBufferSize": 8192
             }
         },
         "https": {
             "frontEnd": {
-                "enableSni": false
+                "enableSni": true
             }
         }
     },
