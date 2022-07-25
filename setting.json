@@ -166,7 +166,7 @@
                 },
                 "disks": [],
                 "cleanup": {
-                    "time": "03:00",
+                    "time": "02:00",
                     "age": 0,
                     "emptyDir": "delete",
                     "fileCount": 0,
