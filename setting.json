@@ -241,7 +241,7 @@
         },
         "http": {
             "frontEnd": {
-                "recBufferSize": 16384
+                "recBufferSize": 8192
             }
         },
         "https": {
