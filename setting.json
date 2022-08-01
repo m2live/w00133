@@ -923,5 +923,173 @@
             }
         }
     },
-    "hosting": []
+    "hosting": [
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "enable": true,
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2,
+                            "keyword": "dims"
+                        }
+                    }
+                },
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "session": {
+                                "connectTimeout": 3,
+                                "receiveTimeout": 300,
+                                "busyCount": 0,
+                                "reuseTimeout": 60
+                            },
+                            "health": {
+                                "exclusion": {
+                                    "count": 0
+                                }
+                            },
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "141.164.35.166.origin.m2"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "name": "141.164.35.166.origin.m2",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "141.164.35.166.first.origin.m2"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "mode": {
+                "instant": true
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "name": "141.164.35.166.first.origin.m2",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "141.164.35.166",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "mode": {
+                "instant": true
+            },
+            "fallback": {
+                "enable": true,
+                "urlRewrites": [
+                    {
+                        "replace": "/#1/aws_s3/put/s3Storage",
+                        "pattern": "/(.*)"
+                    }
+                ],
+                "matchingList": [
+                    "4xx",
+                    "5xx"
+                ],
+                "next": "141.164.35.166.second.origin.m2"
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "origin": {
+                "address": [
+                    "m2.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "urlRewrites": [
+                {
+                    "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
+                    "pattern": "^141.164.35.166/(.+)\\\\?refresh=true"
+                }
+            ],
+            "mode": {
+                "instant": true
+            },
+            "name": "141.164.35.166.second.origin.m2",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "141.164.35.166"
+                                }
+                            }
+                        }
+                    }
+                },
+                "backend": {
+                    "aws_s3": {
+                        "meta": {
+                            "keyword": "aws_s3",
+                            "enable": true
+                        },
+                        "endpoints": [
+                            {
+                                "bucket": "s3-config-sync",
+                                "name": "s3Storage",
+                                "region": "ap-northeast-2",
+                                "accessKey": "AKIAUPBJJDGA57S4RU3X",
+                                "secretKey": "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"
+                            }
+                        ]
+                    }
+                }
+            },
+            "enable": true
+        }
+    ]
 }
