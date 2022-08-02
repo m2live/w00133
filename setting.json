@@ -921,21 +921,21 @@
                 "network": {
                     "http": {
                         "backEnd": {
-                            "session": {
-                                "reuseTimeout": 60,
-                                "connectTimeout": 3,
-                                "receiveTimeout": 300,
-                                "busyCount": 0
-                            },
                             "health": {
                                 "exclusion": {
                                     "count": 0
                                 }
                             },
+                            "session": {
+                                "reuseTimeout": 60,
+                                "receiveTimeout": 300,
+                                "connectTimeout": 3,
+                                "busyCount": 0
+                            },
                             "headers": {
                                 "host": {
-                                    "value": "141.164.35.166.origin.m2",
-                                    "enable": true
+                                    "enable": true,
+                                    "value": "141.164.35.166.origin.m2"
                                 }
                             }
                         }
@@ -944,10 +944,10 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
+                            "enable": true,
+                            "maxSourceSize": 2,
                             "minSourceSize": 0,
-                            "maxSourceSize": 3,
-                            "enable": true
+                            "keyword": "dims"
                         }
                     }
                 }
@@ -963,25 +963,25 @@
         },
         {
             "listen": "*:80",
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
-            },
             "functions": {
                 "network": {
                     "http": {
                         "backEnd": {
                             "headers": {
                                 "host": {
-                                    "value": "141.164.35.166.first.origin.m2",
-                                    "enable": true
+                                    "enable": true,
+                                    "value": "141.164.35.166.first.origin.m2"
                                 }
                             }
                         }
                     }
                 }
+            },
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
             },
             "mode": {
                 "instant": true
@@ -991,71 +991,86 @@
         },
         {
             "listen": "*:80",
-            "name": "141.164.35.166.first.origin.m2",
-            "fallbacks": {
-                "enable": true,
-                "matchingList": [
-                    {
-                        "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage?#2",
-                        "resCodes": [
-                            "4xx",
-                            "5xx"
-                        ],
-                        "pattern": "$URL[/(.*)\\?(.*)]"
-                    },
-                    {
-                        "pattern": "$URL[/(.*)]",
-                        "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
-                        "resCodes": [
-                            "4xx",
-                            "5xx"
-                        ]
-                    }
-                ]
-            },
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "141.164.35.166",
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
             },
+            "fallbacks": {
+                "enable": true,
+                "matchingList": [
+                    {
+                        "resCodes": [
+                            "4xx",
+                            "5xx"
+                        ],
+                        "pattern": "$URL[/(.*)\\?(.*)]",
+                        "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage?#2"
+                    },
+                    {
+                        "resCodes": [
+                            "4xx",
+                            "5xx"
+                        ],
+                        "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
+                        "pattern": "$URL[/(.*)]"
+                    }
+                ]
+            },
             "mode": {
                 "instant": true
+            },
+            "name": "141.164.35.166.first.origin.m2",
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "enable": true,
+                                    "value": "141.164.35.166"
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "enable": true
         },
         {
             "listen": "*:80",
+            "mode": {
+                "instant": true
+            },
             "name": "141.164.35.166.second.origin.m2",
+            "origin": {
+                "address": [
+                    "m2.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "urlRewrites": [
+                {
+                    "pattern": "^141.164.35.166/(.+)\\?refresh=true",
+                    "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage"
+                }
+            ],
             "functions": {
                 "backend": {
                     "aws_s3": {
                         "endpoints": [
                             {
-                                "bucket": "s3-config-sync",
-                                "accessKey": "AKIAUPBJJDGA57S4RU3X",
-                                "secretKey": "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",
                                 "region": "ap-northeast-2",
-                                "name": "s3Storage"
+                                "bucket": "s3-config-sync",
+                                "name": "s3Storage",
+                                "secretKey": "cqavyWKiejqMc4Kakf6lPJ6mETMPAOfnC5LBmj4L",
+                                "accessKey": "AKIAUPBJJDGA57S4RU3X"
                             }
                         ],
                         "meta": {
-                            "enable": true,
-                            "keyword": "aws_s3"
+                            "keyword": "aws_s3",
+                            "enable": true
                         }
                     }
                 },
@@ -1071,21 +1086,6 @@
                         }
                     }
                 }
-            },
-            "mode": {
-                "instant": true
-            },
-            "urlRewrites": [
-                {
-                    "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
-                    "pattern": "^141.164.35.166/(.+)\\?refresh=true"
-                }
-            ],
-            "origin": {
-                "address": [
-                    "m2.winesoft.co.kr"
-                ],
-                "protocol": "http"
             },
             "enable": true
         }
