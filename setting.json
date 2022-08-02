@@ -18,12 +18,13 @@
                         "type": "firebasePubsub",
                         "info": {
                             "apiKey": "AIzaSyDDLFgv6PQnLyvdknDiGTB4JVGws5jZeTA",
-                            "authDomain": "stg-m2live-api.firebaseapp.com ",
-                            "databaseUrl": "https://stg-m2live-api.firebaseio.com",
+                            "authDomain": "stg-m2live-api.firebaseapp.com",
+                            "databaseURL": "https://stg-m2live-api.firebaseio.com",
                             "projectId": "stg-m2live-api",
                             "storageBucket": "stg-m2live-api.appspot.com",
                             "messagingSenderId": "370817246668",
-                            "appId": "1:370817246668:web:d8546f78b2330d6a396969"
+                            "appId": "1:370817246668:web:d6e6154cdc6fe868396969",
+                            "measurementId": ""
                         }
                     }
                 ],
@@ -73,7 +74,7 @@
         "properties": {
             "memoryUsage": {
                 "totalUsableRatio": 100,
-                "workingRatio": 60,
+                "workingRatio": 50,
                 "partition": "1:1"
             },
             "coreWorkers": {
@@ -99,7 +100,7 @@
                 "reopenRatio": 75
             },
             "http": {
-                "recvBufferSize": 8192,
+                "recBufferSize": 8192,
                 "initCount": 20000,
                 "increaseCount": 6000
             },
@@ -231,16 +232,6 @@
                 "min": 0,
                 "max": 1,
                 "idleTimeout": 60000
-            }
-        },
-        "http": {
-            "frontEnd": {
-                "recBufferSize": 8192
-            }
-        },
-        "https": {
-            "frontEnd": {
-                "enableSni": true
             }
         }
     },
