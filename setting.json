@@ -926,21 +926,14 @@
     "hosting": [
         {
             "listen": "*:80",
-            "name": "141.164.35.166",
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
-            },
             "functions": {
                 "network": {
                     "http": {
                         "backEnd": {
                             "session": {
                                 "reuseTimeout": 60,
-                                "receiveTimeout": 300,
                                 "connectTimeout": 3,
+                                "receiveTimeout": 300,
                                 "busyCount": 0
                             },
                             "health": {
@@ -960,20 +953,30 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 2,
-                            "enable": true,
                             "keyword": "dims",
-                            "minSourceSize": 0
+                            "minSourceSize": 0,
+                            "maxSourceSize": 3,
+                            "enable": true
                         }
                     }
                 }
             },
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "name": "141.164.35.166",
             "enable": true
         },
         {
             "listen": "*:80",
-            "mode": {
-                "instant": true
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
             },
             "functions": {
                 "network": {
@@ -989,11 +992,8 @@
                     }
                 }
             },
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
+            "mode": {
+                "instant": true
             },
             "name": "141.164.35.166.origin.m2",
             "enable": true
@@ -1001,13 +1001,8 @@
         {
             "listen": "*:80",
             "name": "141.164.35.166.first.origin.m2",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
             "fallbacks": {
+                "enable": true,
                 "matchingList": [
                     {
                         "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage?#2",
@@ -1015,7 +1010,7 @@
                             "4xx",
                             "5xx"
                         ],
-                        "pattern": "$URL[/(.*)]\\?(.*)"
+                        "pattern": "$URL[/(.*)\\?(.*)]"
                     },
                     {
                         "pattern": "$URL[/(.*)]",
@@ -1025,11 +1020,7 @@
                             "5xx"
                         ]
                     }
-                ],
-                "enable": true
-            },
-            "mode": {
-                "instant": true
+                ]
             },
             "functions": {
                 "network": {
@@ -1037,44 +1028,38 @@
                         "backEnd": {
                             "headers": {
                                 "host": {
-                                    "enable": true,
-                                    "value": "141.164.35.166"
+                                    "value": "141.164.35.166",
+                                    "enable": true
                                 }
                             }
                         }
                     }
                 }
             },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "mode": {
+                "instant": true
+            },
             "enable": true
         },
         {
             "listen": "*:80",
-            "urlRewrites": [
-                {
-                    "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
-                    "pattern": "^141.164.35.166/(.+)\\?refresh=true"
-                }
-            ],
-            "mode": {
-                "instant": true
-            },
             "name": "141.164.35.166.second.origin.m2",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "m2.winesoft.co.kr"
-                ]
-            },
             "functions": {
                 "backend": {
                     "aws_s3": {
                         "endpoints": [
                             {
-                                "region": "ap-northeast-2",
-                                "name": "s3Storage",
+                                "bucket": "s3-config-sync",
                                 "accessKey": "AKIAUPBJJDGA57S4RU3X",
                                 "secretKey": "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",
-                                "bucket": "s3-config-sync"
+                                "region": "ap-northeast-2",
+                                "name": "s3Storage"
                             }
                         ],
                         "meta": {
@@ -1088,13 +1073,28 @@
                         "backEnd": {
                             "headers": {
                                 "host": {
-                                    "value": "141.164.35.166",
-                                    "enable": true
+                                    "enable": true,
+                                    "value": "141.164.35.166"
                                 }
                             }
                         }
                     }
                 }
+            },
+            "mode": {
+                "instant": true
+            },
+            "urlRewrites": [
+                {
+                    "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
+                    "pattern": "^141.164.35.166/(.+)\\?refresh=true"
+                }
+            ],
+            "origin": {
+                "address": [
+                    "m2.winesoft.co.kr"
+                ],
+                "protocol": "http"
             },
             "enable": true
         }
