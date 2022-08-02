@@ -100,7 +100,7 @@
                 "reopenRatio": 75
             },
             "http": {
-                "recBufferSize": 8192,
+                "recvBufferSize": 8192,
                 "initCount": 20000,
                 "increaseCount": 6000
             },
