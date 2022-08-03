@@ -73,7 +73,7 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 100,
+                "totalUsableRatio": 85,
                 "workingRatio": 50,
                 "partition": "1:1"
             },
@@ -100,7 +100,7 @@
                 "reopenRatio": 75
             },
             "http": {
-                "recvBufferSize": 8192,
+                "recvBufferSize": 4096,
                 "initCount": 20000,
                 "increaseCount": 6000
             },
@@ -167,13 +167,13 @@
                 },
                 "disks": [
                     {
-                        "mount": "/user/cache1",
-                        "quota": 100,
+                        "mount": "/user/cache2",
+                        "quota": 75,
                         "quotaUnit": "ratio"
                     }
                 ],
                 "cleanup": {
-                    "time": "02:00",
+                    "time": "03:00",
                     "age": 0,
                     "emptyDir": "delete",
                     "fileCount": 0,
@@ -855,7 +855,7 @@
         "operations": {
             "log": {
                 "meta": {
-                    "dir": "/m2live_log"
+                    "dir": "/m2log"
                 },
                 "access": {
                     "enable": true,
