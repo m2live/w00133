@@ -73,7 +73,7 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 100,
+                "totalUsableRatio": 50,
                 "workingRatio": 50,
                 "partition": "1:1"
             },
@@ -165,7 +165,13 @@
                     "diskFailCount": 10,
                     "onCrash": "hang"
                 },
-                "disks": [],
+                "disks": [
+                    {
+                        "mount": "/user/cache1",
+                        "quota": 50,
+                        "quotaUnit": "ratio"
+                    }
+                ],
                 "cleanup": {
                     "time": "02:00",
                     "age": 0,
