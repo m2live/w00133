@@ -73,7 +73,7 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 50,
+                "totalUsableRatio": 100,
                 "workingRatio": 50,
                 "partition": "1:1"
             },
@@ -168,7 +168,7 @@
                 "disks": [
                     {
                         "mount": "/user/cache1",
-                        "quota": 50,
+                        "quota": 100,
                         "quotaUnit": "ratio"
                     }
                 ],
