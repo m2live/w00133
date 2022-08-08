@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "485"
+        "version": "486"
     },
     "env": {
         "management": {
@@ -919,171 +919,20 @@
         {
             "listen": "*:80",
             "origin": {
-                "protocol": "http",
                 "address": [
-                    "127.0.0.1"
-                ]
-            },
-            "name": "141.164.35.166",
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "enable": true,
-                                    "value": "141.164.35.166.origin.m2"
-                                }
-                            },
-                            "health": {
-                                "exclusion": {
-                                    "count": 0
-                                }
-                            },
-                            "session": {
-                                "busyCount": 0,
-                                "reuseTimeout": 60,
-                                "connectTimeout": 3,
-                                "receiveTimeout": 300
-                            }
-                        }
-                    }
-                },
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "maxSourceSize": 2,
-                            "keyword": "dims",
-                            "minSourceSize": 0,
-                            "enable": true
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "name": "141.164.35.166.origin.m2",
-            "origin": {
-                "address": [
-                    "127.0.0.1"
+                    "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
             },
-            "mode": {
-                "instant": true
-            },
+            "name": "141.164.35.166",
             "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "enable": true,
-                                    "value": "141.164.35.166.first.origin.m2"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "fallbacks": {
-                "matchingList": [
-                    {
-                        "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage?#2",
-                        "resCodes": [
-                            "4xx",
-                            "5xx"
-                        ],
-                        "pattern": "$URL[/(.*)\\?(.*)]"
-                    },
-                    {
-                        "resCodes": [
-                            "4xx",
-                            "5xx"
-                        ],
-                        "pattern": "$URL[/(.*)]",
-                        "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage"
-                    }
-                ],
-                "enable": true
-            },
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "enable": true,
-                                    "value": "141.164.35.166"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "name": "141.164.35.166.first.origin.m2",
-            "mode": {
-                "instant": true
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "m2.winesoft.co.kr"
-                ]
-            },
-            "mode": {
-                "instant": true
-            },
-            "urlRewrites": [
-                {
-                    "replace": "141.164.35.166.second.origin.m2/#1/aws_s3/put/s3Storage",
-                    "pattern": "^141.164.35.166/(.+)\\?refresh=true"
-                }
-            ],
-            "name": "141.164.35.166.second.origin.m2",
-            "functions": {
-                "backend": {
-                    "aws_s3": {
-                        "endpoints": [
-                            {
-                                "secretKey": "cqavyWKiejqMc4Kakf6lPJ6mETMPAOfnC5LBmj4L",
-                                "bucket": "s3-config-sync",
-                                "region": "ap-northeast-2",
-                                "accessKey": "AKIAUPBJJDGA57S4RU3X",
-                                "name": "s3Storage"
-                            }
-                        ],
+                "contents": {
+                    "dims": {
                         "meta": {
+                            "maxSourceSize": 3,
+                            "keyword": "dims",
                             "enable": true,
-                            "keyword": "aws_s3"
-                        }
-                    }
-                },
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "141.164.35.166",
-                                    "enable": true
-                                }
-                            }
+                            "minSourceSize": 0
                         }
                     }
                 }
