@@ -74,7 +74,7 @@
         "properties": {
             "memoryUsage": {
                 "totalUsableRatio": 85,
-                "workingRatio": 50,
+                "workingRatio": 60,
                 "partition": "1:1"
             },
             "coreWorkers": {
