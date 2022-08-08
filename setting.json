@@ -165,13 +165,7 @@
                     "diskFailCount": 10,
                     "onCrash": "hang"
                 },
-                "disks": [
-                    {
-                        "mount": "/user/cache2",
-                        "quota": 75,
-                        "quotaUnit": "ratio"
-                    }
-                ],
+                "disks": [],
                 "cleanup": {
                     "time": "03:00",
                     "age": 0,
