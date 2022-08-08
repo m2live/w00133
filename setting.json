@@ -73,7 +73,7 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 100,
+                "totalUsableRatio": 95,
                 "workingRatio": 60,
                 "partition": "1:1"
             },
