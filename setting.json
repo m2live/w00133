@@ -1,6 +1,7 @@
 {
     "meta": {
-        "branch": "production"
+        "branch": "production",
+        "version": "485"
     },
     "env": {
         "management": {
@@ -73,7 +74,7 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 95,
+                "totalUsableRatio": 100,
                 "workingRatio": 60,
                 "partition": "1:1"
             },
