@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "490"
+        "version": "497"
     },
     "env": {
         "management": {
@@ -919,22 +919,10 @@
         {
             "listen": "*:80",
             "name": "141.164.35.166",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "127.0.0.1"
-                ]
-            },
             "functions": {
                 "network": {
                     "http": {
                         "backEnd": {
-                            "session": {
-                                "busyCount": 0,
-                                "receiveTimeout": 300,
-                                "connectTimeout": 3,
-                                "reuseTimeout": 60
-                            },
                             "headers": {
                                 "host": {
                                     "value": "141.164.35.166.origin.m2",
@@ -945,6 +933,12 @@
                                 "exclusion": {
                                     "count": 0
                                 }
+                            },
+                            "session": {
+                                "receiveTimeout": 300,
+                                "busyCount": 0,
+                                "connectTimeout": 3,
+                                "reuseTimeout": 60
                             }
                         }
                     }
@@ -954,11 +948,17 @@
                         "meta": {
                             "enable": true,
                             "maxSourceSize": 3,
-                            "keyword": "dims",
-                            "minSourceSize": 0
+                            "minSourceSize": 0,
+                            "keyword": "dims"
                         }
                     }
                 }
+            },
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "127.0.0.1"
+                ]
             },
             "enable": true
         },
@@ -967,7 +967,31 @@
             "mode": {
                 "instant": true
             },
+            "origin": {
+                "address": [
+                    "127.0.0.1"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "network": {
+                    "http": {
+                        "backEnd": {
+                            "headers": {
+                                "host": {
+                                    "value": "141.164.35.166.first.origin.m2",
+                                    "enable": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "name": "141.164.35.166.origin.m2",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
             "functions": {
                 "network": {
                     "http": {
@@ -975,24 +999,15 @@
                             "headers": {
                                 "host": {
                                     "enable": true,
-                                    "value": "141.164.35.166.first.origin.m2"
+                                    "value": "141.164.35.166"
                                 }
                             }
                         }
                     }
                 }
             },
-            "origin": {
-                "address": [
-                    "127.0.0.1"
-                ],
-                "protocol": "http"
-            },
-            "enable": true
-        },
-        {
-            "listen": "*:80",
             "fallbacks": {
+                "enable": true,
                 "matchingList": [
                     {
                         "resCodes": [
@@ -1002,33 +1017,18 @@
                         "pattern": "$URL[/(.*)]",
                         "replace": "141.164.35.166.second.origin.m2/#1"
                     }
-                ],
-                "enable": true
-            },
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "functions": {
-                "network": {
-                    "http": {
-                        "backEnd": {
-                            "headers": {
-                                "host": {
-                                    "value": "141.164.35.166",
-                                    "enable": true
-                                }
-                            }
-                        }
-                    }
-                }
+                ]
             },
             "mode": {
                 "instant": true
             },
             "name": "141.164.35.166.first.origin.m2",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
             "enable": true
         },
         {
@@ -1047,6 +1047,9 @@
                     }
                 }
             },
+            "mode": {
+                "instant": true
+            },
             "name": "141.164.35.166.second.origin.m2",
             "origin": {
                 "address": [
@@ -1054,8 +1057,76 @@
                 ],
                 "protocol": "http"
             },
-            "mode": {
-                "instant": true
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "denc": {
+                        "bulk": {
+                            "enable": true,
+                            "encrypt": {
+                                "iv": "0000000000000000",
+                                "key": "$token",
+                                "keyHash": "none",
+                                "token": "1234567890123456",
+                                "algorithm": "AES_128_CBC"
+                            },
+                            "keyword": "dencbulk"
+                        }
+                    },
+                    "epubedit": {
+                        "archive": {
+                            "enable": true,
+                            "rules": [
+                                {
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/denc/bulk/true",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ],
+                                    "name": "encrypt"
+                                },
+                                {
+                                    "name": "grayscale",
+                                    "matchingList": [
+                                        {
+                                            "pattern": "/([^/]+).jpg",
+                                            "replace": "/#1.jpg/dims/grayscale/true"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 2,
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "keyword": "dims"
+                        }
+                    }
+                }
+            },
+            "name": "image.winesoft.com",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
             },
             "enable": true
         }
