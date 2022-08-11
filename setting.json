@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "502"
+        "version": "503"
     },
     "env": {
         "management": {
@@ -166,7 +166,13 @@
                     "diskFailCount": 10,
                     "onCrash": "hang"
                 },
-                "disks": [],
+                "disks": [
+                    {
+                        "mount": "/user/cache1",
+                        "quota": 100,
+                        "quotaUnit": "ratio"
+                    }
+                ],
                 "cleanup": {
                     "time": "02:00",
                     "age": 0,
