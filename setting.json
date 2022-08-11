@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "506"
+        "version": "507"
     },
     "env": {
         "management": {
@@ -921,5 +921,77 @@
             }
         }
     },
-    "hosting": []
+    "hosting": [
+        {
+            "listen": "*:80",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "contents": {
+                    "epubedit": {
+                        "archive": {
+                            "rules": [
+                                {
+                                    "name": "encrypt",
+                                    "matchingList": [
+                                        {
+                                            "pattern": "/([^/]+).jpg",
+                                            "replace": "/#1.jpg/dencbulk/true"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "matchingList": [
+                                        {
+                                            "pattern": "/([^/]+).jpg",
+                                            "replace": "/#1.jpg/dims/grayscale/true"
+                                        }
+                                    ],
+                                    "name": "grayscale"
+                                }
+                            ],
+                            "enable": true
+                        },
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "encrypt": {
+                                "iv": "0000000000000000",
+                                "token": "1234567890123456",
+                                "algorithm": "AES_128_CBC",
+                                "keyHash": "none",
+                                "key": "$token"
+                            },
+                            "enable": true,
+                            "keyword": "dencbulk"
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2,
+                            "enable": true
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "unzip"
+                        }
+                    }
+                }
+            },
+            "name": "image.winesoft.com",
+            "enable": true
+        }
+    ]
 }
