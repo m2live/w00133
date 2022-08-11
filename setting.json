@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "498"
+        "version": "500"
     },
     "env": {
         "management": {
@@ -920,71 +920,71 @@
             "listen": "*:80",
             "functions": {
                 "contents": {
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims",
-                            "maxSourceSize": 2,
-                            "minSourceSize": 0,
-                            "enable": true
-                        }
-                    },
-                    "denc": {
-                        "bulk": {
-                            "keyword": "dencbulk",
-                            "encrypt": {
-                                "token": "1234567890123456",
-                                "iv": "0000000000000000",
-                                "keyHash": "none",
-                                "algorithm": "AES_128_CBC",
-                                "key": "$token"
-                            },
-                            "enable": true
-                        }
-                    },
                     "epubedit": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        },
                         "archive": {
                             "rules": [
                                 {
+                                    "name": "encrypt",
                                     "matchingList": [
                                         {
                                             "pattern": "/([^/]+).jpg",
                                             "replace": "/#1.jpg/denc/bulk/true"
                                         }
-                                    ],
-                                    "name": "encrypt"
+                                    ]
                                 },
                                 {
                                     "name": "grayscale",
                                     "matchingList": [
                                         {
-                                            "pattern": "/([^/]+).jpg",
-                                            "replace": "/#1.jpg/dims/grayscale/true"
+                                            "replace": "/#1.jpg/dims/grayscale/true",
+                                            "pattern": "/([^/]+).jpg"
                                         }
                                     ]
                                 }
                             ],
                             "enable": true
-                        },
-                        "meta": {
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
                             "enable": true,
-                            "keyword": "epubedit"
+                            "encrypt": {
+                                "keyHash": "none",
+                                "algorithm": "AES_128_CBC",
+                                "token": "1234567890123456",
+                                "key": "$token",
+                                "iv": "0000000000000000"
+                            },
+                            "keyword": "dencbulk"
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 3,
+                            "keyword": "dims",
+                            "minSourceSize": 0,
+                            "enable": true
                         }
                     },
                     "unzip": {
                         "meta": {
-                            "enable": true,
-                            "keyword": "unzip"
+                            "keyword": "unzip",
+                            "enable": true
                         }
                     }
                 }
             },
+            "name": "192.168.0.70",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
+                ],
+                "protocol": "http"
             },
-            "name": "image.winesoft.com",
             "enable": true
         }
     ]
