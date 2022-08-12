@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "512"
+        "version": "513"
     },
     "env": {
         "management": {
@@ -921,5 +921,83 @@
             }
         }
     },
-    "hosting": []
+    "hosting": [
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "functions": {
+                "contents": {
+                    "epubedit": {
+                        "meta": {
+                            "keyword": "epubedit",
+                            "enable": true
+                        },
+                        "trim": {
+                            "prefix": [
+                                "i-",
+                                "p-"
+                            ]
+                        },
+                        "archive": {
+                            "enable": true,
+                            "rules": [
+                                {
+                                    "matchingList": [
+                                        {
+                                            "pattern": "/([^/]+).jpg",
+                                            "replace": "/#1.jpg/dencbulk/true"
+                                        }
+                                    ],
+                                    "name": "encrypt"
+                                },
+                                {
+                                    "name": "grayscale",
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/dims/grayscale/true",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "keyword": "dencbulk",
+                            "enable": true,
+                            "encrypt": {
+                                "keyHash": "none",
+                                "token": "1234567890123456",
+                                "algorithm": "AES_128_CBC",
+                                "iv": "0000000000000000",
+                                "key": "$token"
+                            }
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2,
+                            "enable": true
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    }
+                }
+            },
+            "name": "epub.winesoft.co.kr",
+            "enable": true
+        }
+    ]
 }
