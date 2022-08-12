@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "509"
+        "version": "510"
     },
     "env": {
         "management": {
@@ -921,83 +921,5 @@
             }
         }
     },
-    "hosting": [
-        {
-            "listen": "*:80",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "maxSourceSize": 5,
-                            "enable": true,
-                            "minSourceSize": 0,
-                            "keyword": "dims"
-                        }
-                    },
-                    "unzip": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "unzip"
-                        }
-                    },
-                    "denc": {
-                        "bulk": {
-                            "encrypt": {
-                                "algorithm": "AES_128_CBC",
-                                "token": "1234567890123456",
-                                "key": "$token",
-                                "iv": "0000000000000000",
-                                "keyHash": "none"
-                            },
-                            "keyword": "dencbulk",
-                            "enable": true
-                        }
-                    },
-                    "epubedit": {
-                        "meta": {
-                            "keyword": "epubedit",
-                            "enable": true
-                        },
-                        "trim": {
-                            "prefix": [
-                                "i-",
-                                "p-"
-                            ]
-                        },
-                        "archive": {
-                            "enable": true,
-                            "rules": [
-                                {
-                                    "matchingList": [
-                                        {
-                                            "pattern": "/([^/]+).jpg",
-                                            "replace": "/#1.jpg/dencbulk/true"
-                                        }
-                                    ],
-                                    "name": "encrypt"
-                                },
-                                {
-                                    "matchingList": [
-                                        {
-                                            "replace": "/#1.jpg/dims/grayscale/true",
-                                            "pattern": "/([^/]+).jpg"
-                                        }
-                                    ],
-                                    "name": "grayscale"
-                                }
-                            ]
-                        }
-                    }
-                }
-            },
-            "name": "image.winesoft.com",
-            "enable": true
-        }
-    ]
+    "hosting": []
 }
