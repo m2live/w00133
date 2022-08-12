@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "510"
+        "version": "511"
     },
     "env": {
         "management": {
@@ -921,5 +921,83 @@
             }
         }
     },
-    "hosting": []
+    "hosting": [
+        {
+            "listen": "*:80",
+            "origin": {
+                "protocol": "https",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "name": "epub.winesoft.co.kr",
+            "functions": {
+                "contents": {
+                    "epubedit": {
+                        "trim": {
+                            "prefix": [
+                                "i-",
+                                "p-"
+                            ]
+                        },
+                        "archive": {
+                            "rules": [
+                                {
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/dencbulk/true",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ],
+                                    "name": "encrypt"
+                                },
+                                {
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/dims/grayscale/true",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ],
+                                    "name": "grayscale"
+                                }
+                            ],
+                            "enable": true
+                        },
+                        "meta": {
+                            "keyword": "epubedit",
+                            "enable": true
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "encrypt": {
+                                "key": "$token",
+                                "keyHash": "none",
+                                "algorithm": "AES_128_CBC",
+                                "iv": "0000000000000000",
+                                "token": "1234567890123456"
+                            },
+                            "keyword": "dencbulk",
+                            "enable": true
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 3,
+                            "minSourceSize": 0,
+                            "keyword": "dims",
+                            "enable": true
+                        }
+                    }
+                }
+            },
+            "enable": true
+        }
+    ]
 }
