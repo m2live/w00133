@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "1.0.3/1;workstack=515",
+        "version": "1.0.3/1;workstack=516",
         "hostName": "",
         "admin": "",
         "defaultHosting": ""
@@ -944,5 +944,83 @@
             }
         }
     },
-    "hosting": []
+    "hosting": [
+        {
+            "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "maxSourceSize": 2,
+                            "keyword": "dims"
+                        }
+                    },
+                    "epubedit": {
+                        "meta": {
+                            "keyword": "epubedit",
+                            "enable": true
+                        },
+                        "trim": {
+                            "prefix": [
+                                "i-",
+                                "p-"
+                            ]
+                        },
+                        "archive": {
+                            "enable": true,
+                            "rules": [
+                                {
+                                    "name": "encrypt",
+                                    "matchingList": [
+                                        {
+                                            "pattern": "/([^/]+).jpg",
+                                            "replace": "/#1.jpg/dencbulk/true"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "grayscale",
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/dims/grayscale/true",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "keyword": "dencbulk",
+                            "enable": true,
+                            "encrypt": {
+                                "algorithm": "AES_128_CBC",
+                                "token": "1234567890123456",
+                                "key": "$token",
+                                "iv": "0000000000000000",
+                                "keyHash": "none"
+                            }
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "enable": true
+        }
+    ]
 }
