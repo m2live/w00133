@@ -1,7 +1,10 @@
 {
     "meta": {
         "branch": "production",
-        "version": "514"
+        "version": "1.0.3/1;workstack=515",
+        "hostName": "",
+        "admin": "",
+        "defaultHosting": ""
     },
     "env": {
         "management": {
@@ -25,7 +28,8 @@
                             "storageBucket": "stg-m2live-api.appspot.com",
                             "messagingSenderId": "370817246668",
                             "appId": "1:370817246668:web:d6e6154cdc6fe868396969",
-                            "measurementId": ""
+                            "measurementId": "",
+                            "databaseUrl": "https://stg-m2live-api.firebaseio.com"
                         }
                     }
                 ],
@@ -305,8 +309,12 @@
                     "keyword": "epubedit"
                 },
                 "trim": {
-                    "prefix": [],
-                    "include": [],
+                    "prefix": [
+                        "i-"
+                    ],
+                    "include": [
+                        "cover"
+                    ],
                     "pageSpread": {
                         "enable": false,
                         "order": "auto"
@@ -314,7 +322,17 @@
                 },
                 "archive": {
                     "enable": false,
-                    "rules": []
+                    "rules": [
+                        {
+                            "name": "resize200",
+                            "matchingList": [
+                                {
+                                    "pattern": "/([^/]+).jpg",
+                                    "replace": "/#1.jpg/dencbulk/true"
+                                }
+                            ]
+                        }
+                    ]
                 }
             },
             "mp3edit": {
@@ -595,7 +613,12 @@
                 },
                 "contentTypes": {
                     "default": "application/octet-stream",
-                    "map": []
+                    "map": [
+                        {
+                            "extension": "opf",
+                            "value": "application/oebps-package+xml"
+                        }
+                    ]
                 }
             }
         },
