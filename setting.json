@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "1.0.3/1;workstack=522",
+        "version": "1.0.3/1;workstack=523",
         "hostName": "",
         "admin": "",
         "defaultHosting": ""
@@ -253,7 +253,7 @@
                     "enable": false,
                     "keyword": "dims",
                     "minSourceSize": 0,
-                    "maxSourceSize": 10
+                    "maxSourceSize": 0
                 },
                 "quality": {
                     "max": 99,
