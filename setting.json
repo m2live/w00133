@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "1.0.3/1;workstack=521",
+        "version": "1.0.3/1;workstack=522",
         "hostName": "",
         "admin": "",
         "defaultHosting": ""
@@ -947,79 +947,85 @@
     "hosting": [
         {
             "listen": "*:80",
-            "functions": {
-                "contents": {
-                    "unzip": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "unzip"
-                        }
-                    },
-                    "denc": {
-                        "bulk": {
-                            "encrypt": {
-                                "algorithm": "AES_128_CBC",
-                                "token": "1234567890123456",
-                                "iv": "0000000000000000",
-                                "key": "$token",
-                                "keyHash": "none"
-                            },
-                            "enable": true,
-                            "keyword": "dencbulk"
-                        }
-                    },
-                    "dims": {
-                        "meta": {
-                            "minSourceSize": 0,
-                            "enable": true,
-                            "maxSourceSize": 2,
-                            "keyword": "dims"
-                        }
-                    },
-                    "epubedit": {
-                        "meta": {
-                            "keyword": "epubedit",
-                            "enable": true
-                        },
-                        "trim": {
-                            "prefix": [
-                                "i-",
-                                "p-"
-                            ]
-                        },
-                        "archive": {
-                            "rules": [
-                                {
-                                    "matchingList": [
-                                        {
-                                            "replace": "/#1.jpg/dencbulk/true",
-                                            "pattern": "/([^/]+).jpg"
-                                        }
-                                    ],
-                                    "name": "encrypt"
-                                },
-                                {
-                                    "name": "grayscale",
-                                    "matchingList": [
-                                        {
-                                            "replace": "/#1.jpg/dims/grayscale/true",
-                                            "pattern": "/([^/]+).jpg"
-                                        }
-                                    ]
-                                }
-                            ],
-                            "enable": true
-                        }
-                    }
-                }
-            },
+            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
             },
-            "name": "141.164.35.166",
+            "functions": {
+                "contents": {
+                    "epubedit": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        },
+                        "archive": {
+                            "enable": true,
+                            "rules": [
+                                {
+                                    "name": "resize500",
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/dims/resize/500",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "matchingList": [
+                                        {
+                                            "replace": "/#1.jpg/dims/grayscale/true",
+                                            "pattern": "/([^/]+).jpg"
+                                        }
+                                    ],
+                                    "name": "grayscale"
+                                }
+                            ]
+                        },
+                        "trim": {
+                            "include": [
+                                "cover"
+                            ],
+                            "pageSpread": {
+                                "enable": true
+                            },
+                            "prefix": [
+                                "i-",
+                                "p-"
+                            ]
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 2,
+                            "minSourceSize": 0,
+                            "enable": true,
+                            "keyword": "dims"
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "keyword": "dencbulk",
+                            "encrypt": {
+                                "algorithm": "AES_128_CBC",
+                                "token": "1234567890123456",
+                                "iv": "0000000000000000",
+                                "keyHash": "none",
+                                "key": "$token"
+                            },
+                            "enable": true
+                        }
+                    }
+                }
+            },
             "enable": true
         }
     ]
