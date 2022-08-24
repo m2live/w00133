@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "1.0.3/1;workstack=523",
+        "version": "1.0.3/1;workstack=524",
         "hostName": "",
         "admin": "",
         "defaultHosting": ""
@@ -160,7 +160,29 @@
                 },
                 "retention": 5,
                 "warning": false,
-                "compression": false
+                "compression": false,
+                "backup": [
+                    "m2live"
+                ]
+            },
+            "repository": {
+                "list": [
+                    {
+                        "name": "m2live",
+                        "type": "aws-s3",
+                        "rolling": "* *",
+                        "path": "/m2livex/{domain}/year={timestamp.year}/month={timestamp.month}/day={timestamp.day}/{hostname}_{timestamp.hour}{timestamp.minute}_{logtype}.log.gz",
+                        "compression": {
+                            "enable": true
+                        },
+                        "endpoint": {
+                            "bucket": "m2livex",
+                            "region": "ap-northeast-2",
+                            "accessKey": "AKIAUPBJJDGA57S4RU3X",
+                            "secretKey": "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"
+                        }
+                    }
+                ]
             }
         },
         "rt": {
