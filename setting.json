@@ -1,7 +1,7 @@
 {
     "meta": {
         "branch": "production",
-        "version": "1.0.3/1;workstack=527",
+        "version": "1.0.3/1;workstack=529",
         "hostName": "",
         "admin": "",
         "defaultHosting": ""
@@ -27,7 +27,7 @@
                             "projectId": "stg-m2live-api",
                             "storageBucket": "stg-m2live-api.appspot.com",
                             "messagingSenderId": "370817246668",
-                            "appId": "1:370817246668:web:d6e6154cdc6fe868396969",
+                            "appId": "1:370817246668:web:d8546f78b2330d6a396969",
                             "measurementId": "",
                             "databaseUrl": "https://stg-m2live-api.firebaseio.com"
                         }
@@ -195,7 +195,7 @@
                 "disks": [
                     {
                         "mount": "/user/cache1",
-                        "quota": 100,
+                        "quota": 95,
                         "quotaUnit": "ratio"
                     }
                 ],
@@ -275,7 +275,7 @@
                     "enable": false,
                     "keyword": "dims",
                     "minSourceSize": 0,
-                    "maxSourceSize": 0
+                    "maxSourceSize": 10
                 },
                 "quality": {
                     "max": 99,
