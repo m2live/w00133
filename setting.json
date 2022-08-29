@@ -1,8 +1,6 @@
 {
     "meta": {
-        "branch": "production",
-        "version": "1.0.3/1;workstack=529",
-        "hostName": "",
+        "version": "1.0.3/1;workstack=531",
         "admin": "",
         "defaultHosting": ""
     },
@@ -23,13 +21,11 @@
                         "info": {
                             "apiKey": "AIzaSyDDLFgv6PQnLyvdknDiGTB4JVGws5jZeTA",
                             "authDomain": "stg-m2live-api.firebaseapp.com",
-                            "databaseURL": "https://stg-m2live-api.firebaseio.com",
+                            "databaseUrl": "https://stg-m2live-api.firebaseio.com",
                             "projectId": "stg-m2live-api",
                             "storageBucket": "stg-m2live-api.appspot.com",
                             "messagingSenderId": "370817246668",
-                            "appId": "1:370817246668:web:d8546f78b2330d6a396969",
-                            "measurementId": "",
-                            "databaseUrl": "https://stg-m2live-api.firebaseio.com"
+                            "appId": "1:370817246668:web:d8546f78b2330d6a396969"
                         }
                     }
                 ],
@@ -81,11 +77,6 @@
                 "totalUsableRatio": 100,
                 "workingRatio": 65,
                 "partition": "1:1"
-            },
-            "coreWorkers": {
-                "enable": true,
-                "count": 0,
-                "memoryLimit": 500
             },
             "inspection": {
                 "process": {
@@ -160,29 +151,7 @@
                 },
                 "retention": 5,
                 "warning": false,
-                "compression": false,
-                "backup": [
-                    "m2live"
-                ]
-            },
-            "repository": {
-                "list": [
-                    {
-                        "name": "m2live",
-                        "type": "aws-s3",
-                        "rolling": "* *",
-                        "path": "/m2livex/{domain}/year={timestamp.year}/month={timestamp.month}/day={timestamp.day}/{hostname}_{timestamp.hour}{timestamp.minute}_{logtype}.log.gz",
-                        "compression": {
-                            "enable": true
-                        },
-                        "endpoint": {
-                            "bucket": "m2livex",
-                            "region": "ap-northeast-2",
-                            "accessKey": "AKIAUPBJJDGA57S4RU3X",
-                            "secretKey": "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"
-                        }
-                    }
-                ]
+                "compression": false
             }
         },
         "rt": {
@@ -331,12 +300,8 @@
                     "keyword": "epubedit"
                 },
                 "trim": {
-                    "prefix": [
-                        "i-"
-                    ],
-                    "include": [
-                        "cover"
-                    ],
+                    "prefix": [],
+                    "include": [],
                     "pageSpread": {
                         "enable": false,
                         "order": "auto"
@@ -344,17 +309,7 @@
                 },
                 "archive": {
                     "enable": false,
-                    "rules": [
-                        {
-                            "name": "resize200",
-                            "matchingList": [
-                                {
-                                    "pattern": "/([^/]+).jpg",
-                                    "replace": "/#1.jpg/dencbulk/true"
-                                }
-                            ]
-                        }
-                    ]
+                    "rules": []
                 }
             },
             "mp3edit": {
@@ -635,12 +590,7 @@
                 },
                 "contentTypes": {
                     "default": "application/octet-stream",
-                    "map": [
-                        {
-                            "extension": "opf",
-                            "value": "application/oebps-package+xml"
-                        }
-                    ]
+                    "map": []
                 }
             }
         },
