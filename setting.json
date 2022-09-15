@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.3/1;workstack=546",
+        "version": "1.0.3/1;workstack=563",
         "admin": "",
         "defaultHosting": ""
     },
@@ -74,8 +74,8 @@
         },
         "properties": {
             "memoryUsage": {
-                "totalUsableRatio": 95,
-                "workingRatio": 65,
+                "totalUsableRatio": 100,
+                "workingRatio": 60,
                 "partition": "1:1"
             },
             "inspection": {
@@ -96,12 +96,12 @@
                 "reopenRatio": 75
             },
             "http": {
-                "recvBufferSize": 4096,
+                "recvBufferSize": 8192,
                 "initCount": 20000,
                 "increaseCount": 6000
             },
             "https": {
-                "enableSni": false,
+                "enableSni": true,
                 "initCount": 20000,
                 "increaseCount": 6000
             },
@@ -161,13 +161,7 @@
                     "diskFailCount": 10,
                     "onCrash": "hang"
                 },
-                "disks": [
-                    {
-                        "mount": "/user/cache1",
-                        "quota": 95,
-                        "quotaUnit": "ratio"
-                    }
-                ],
+                "disks": [],
                 "cleanup": {
                     "time": "02:00",
                     "age": 0,
@@ -852,7 +846,7 @@
         "operations": {
             "log": {
                 "meta": {
-                    "dir": "/m2log"
+                    "dir": "/m2live_log"
                 },
                 "access": {
                     "enable": true,
