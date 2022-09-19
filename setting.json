@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.3/1;workstack=570",
+        "version": "1.0.4/1",
         "admin": "",
         "defaultHosting": ""
     },
@@ -365,7 +365,7 @@
                     },
                     "out": {
                         "at": null,
-                        "escpaed": true
+                        "escaped": true
                     }
                 },
                 "dom": {
@@ -418,7 +418,7 @@
                     "sizeLimit": {
                         "enable": true,
                         "max": 1048576,
-                        "timing": "download"
+                        "timing": "preprocess"
                     }
                 }
             },
@@ -483,8 +483,11 @@
                     "rebound": {
                         "domain": null,
                         "tags": {
-                            "domain": "bar.com",
-                            "targets": []
+                            "domain": null,
+                            "targets": [
+                                "script.src",
+                                "link.href"
+                            ]
                         }
                     },
                     "resource": {
@@ -824,6 +827,10 @@
                             "enable": false,
                             "matchFirstOnly": false,
                             "matchingList": []
+                        },
+                        "forwardContextId": {
+                            "enable": false,
+                            "header": "X-M2X-Forwarded-Context-Id"
                         }
                     },
                     "authorization": {
@@ -913,27 +920,25 @@
     },
     "hosting": [
         {
-            "listen": "*:80",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
                             "enable": true,
-                            "maxSourceSize": 2,
+                            "keyword": "dims",
                             "minSourceSize": 0,
-                            "keyword": "dims"
+                            "maxSourceSize": 2
                         }
                     }
                 }
             },
+            "name": "141.164.35.166",
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
-            },
-            "name": "141.164.35.166",
-            "enable": true
+            }
         }
     ]
 }
