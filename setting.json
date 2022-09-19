@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=573",
+        "version": "1.0.3/1;workstack=570",
         "admin": "",
         "defaultHosting": ""
     },
@@ -365,7 +365,7 @@
                     },
                     "out": {
                         "at": null,
-                        "escaped": true
+                        "escpaed": true
                     }
                 },
                 "dom": {
@@ -418,7 +418,7 @@
                     "sizeLimit": {
                         "enable": true,
                         "max": 1048576,
-                        "timing": "preprocess"
+                        "timing": "download"
                     }
                 }
             },
@@ -483,11 +483,8 @@
                     "rebound": {
                         "domain": null,
                         "tags": {
-                            "domain": null,
-                            "targets": [
-                                "script.src",
-                                "link.href"
-                            ]
+                            "domain": "bar.com",
+                            "targets": []
                         }
                     },
                     "resource": {
@@ -827,10 +824,6 @@
                             "enable": false,
                             "matchFirstOnly": false,
                             "matchingList": []
-                        },
-                        "forwardContextId": {
-                            "enable": false,
-                            "header": "X-M2X-Forwarded-Context-Id"
                         }
                     },
                     "authorization": {
@@ -921,77 +914,25 @@
     "hosting": [
         {
             "listen": "*:80",
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "enable": true,
+                            "maxSourceSize": 2,
+                            "minSourceSize": 0,
+                            "keyword": "dims"
+                        }
+                    }
+                }
+            },
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
             },
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "minSourceSize": 0,
-                            "keyword": "dims",
-                            "maxSourceSize": 2,
-                            "enable": true
-                        }
-                    }
-                }
-            },
             "name": "141.164.35.166",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
-            "name": "epub.winesoft.co.kr",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "functions": {
-                "contents": {
-                    "denc": {
-                        "bulk": {
-                            "keyword": "dencbulk",
-                            "enable": true
-                        },
-                        "meta": {
-                            "enable": true,
-                            "keyword": "denc"
-                        }
-                    },
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims",
-                            "minSourceSize": 0,
-                            "maxSourceSize": 2,
-                            "enable": true
-                        }
-                    },
-                    "unzip": {
-                        "meta": {
-                            "keyword": "unzip",
-                            "enable": true
-                        }
-                    },
-                    "epubedit": {
-                        "archive": {
-                            "enable": true,
-                            "rules": []
-                        },
-                        "meta": {
-                            "enable": true,
-                            "keyword": "epubedit"
-                        },
-                        "trim": {
-                            "prefix": []
-                        }
-                    }
-                }
-            },
             "enable": true
         }
     ]
