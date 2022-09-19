@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=571",
+        "version": "1.0.4/1;workstack=573",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,25 +920,79 @@
     },
     "hosting": [
         {
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "dims",
-                            "minSourceSize": 0,
-                            "maxSourceSize": 2
-                        }
-                    }
-                }
-            },
-            "name": "141.164.35.166",
+            "listen": "*:80",
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
-            }
+            },
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
+                            "keyword": "dims",
+                            "maxSourceSize": 2,
+                            "enable": true
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "name": "epub.winesoft.co.kr",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
+            "functions": {
+                "contents": {
+                    "denc": {
+                        "bulk": {
+                            "keyword": "dencbulk",
+                            "enable": true
+                        },
+                        "meta": {
+                            "enable": true,
+                            "keyword": "denc"
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2,
+                            "enable": true
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    },
+                    "epubedit": {
+                        "archive": {
+                            "enable": true,
+                            "rules": []
+                        },
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        },
+                        "trim": {
+                            "prefix": []
+                        }
+                    }
+                }
+            },
+            "enable": true
         }
     ]
 }
