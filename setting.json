@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.3/1;workstack=570",
+        "version": "1.0.3/1;workstack=574",
         "admin": "",
         "defaultHosting": ""
     },
@@ -918,21 +918,21 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "enable": true,
                             "maxSourceSize": 2,
-                            "minSourceSize": 0,
-                            "keyword": "dims"
+                            "enable": true,
+                            "keyword": "dims3",
+                            "minSourceSize": 0
                         }
                     }
                 }
             },
+            "name": "141.164.35.166",
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
             },
-            "name": "141.164.35.166",
             "enable": true
         }
     ]
