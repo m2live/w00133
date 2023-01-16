@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=617",
+        "version": "1.0.4/1;workstack=619",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,25 +920,27 @@
     },
     "hosting": [
         {
+            "listen": "*:80",
+            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
                             "enable": true,
-                            "keyword": "dims3",
+                            "keyword": "dims",
                             "minSourceSize": 0,
                             "maxSourceSize": 2
                         }
                     }
                 }
             },
-            "name": "141.164.35.166",
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
-            }
+            },
+            "enable": true
         }
     ]
 }
