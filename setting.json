@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=619",
+        "version": "1.0.4/1;workstack=620",
         "admin": "",
         "defaultHosting": ""
     },
@@ -921,15 +921,106 @@
     "hosting": [
         {
             "listen": "*:80",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
             "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "enable": true,
                             "keyword": "dims",
-                            "minSourceSize": 0,
-                            "maxSourceSize": 2
+                            "enable": true,
+                            "maxSourceSize": 2,
+                            "minSourceSize": 0
+                        }
+                    }
+                }
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "functions": {
+                "network": {
+                    "cache": {
+                        "ttl": {
+                            "resCode": {
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                }
+                            },
+                            "custom": [
+                                {
+                                    "pattern": "*.js",
+                                    "sec": 9
+                                }
+                            ]
+                        },
+                        "cachingKey": {
+                            "queryString": {
+                                "enable": true
+                            },
+                            "case": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            }
+                        }
+                    }
+                },
+                "contents": {
+                    "unzip": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "unzip"
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "keyword": "dencbulk",
+                            "enable": true
+                        },
+                        "meta": {
+                            "keyword": "denc",
+                            "enable": true
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "enable": true,
+                            "maxSourceSize": 2,
+                            "keyword": "dims",
+                            "minSourceSize": 0
+                        }
+                    },
+                    "epubedit": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        },
+                        "trim": {
+                            "prefix": []
+                        },
+                        "archive": {
+                            "enable": true,
+                            "rules": []
                         }
                     }
                 }
@@ -940,6 +1031,7 @@
                     "demo.winesoft.co.kr"
                 ]
             },
+            "name": "epub.winesoft.co.kr",
             "enable": true
         }
     ]
