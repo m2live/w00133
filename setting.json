@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=624",
+        "version": "1.0.4/1;workstack=625",
         "admin": "",
         "defaultHosting": ""
     },
@@ -921,25 +921,25 @@
     "hosting": [
         {
             "listen": "*:80",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "minSourceSize": 0,
-                            "keyword": "dims",
                             "enable": true,
-                            "maxSourceSize": 2
+                            "keyword": "dims",
+                            "maxSourceSize": 2,
+                            "minSourceSize": 0
                         }
                     }
                 }
             },
             "name": "141.164.35.166",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
             "enable": true
         },
         {
@@ -960,78 +960,82 @@
                     },
                     "cache": {
                         "ttl": {
-                            "resCode": {
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                }
-                            },
                             "custom": [
                                 {
-                                    "sec": 10,
-                                    "pattern": "*.jsp"
+                                    "sec": 9,
+                                    "pattern": "*.js"
+                                },
+                                {
+                                    "pattern": "a",
+                                    "sec": null
                                 }
-                            ]
+                            ],
+                            "resCode": {
+                                "noCache": {
+                                    "sec": 4
+                                },
+                                "res4xx": {
+                                    "sec": 29
+                                },
+                                "res2xx": {
+                                    "sec": 1799
+                                },
+                                "res3xx": {
+                                    "sec": 299
+                                },
+                                "res5xx": {
+                                    "sec": 29
+                                }
+                            }
                         },
                         "cachingKey": {
+                            "queryString": {
+                                "enable": false
+                            },
                             "acceptEncoding": {
-                                "enable": true
+                                "enable": false
                             },
                             "case": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
+                                "enable": false
                             }
                         }
                     }
                 },
                 "contents": {
-                    "unzip": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "unzip"
-                        }
-                    },
-                    "denc": {
-                        "bulk": {
-                            "keyword": "dencbulk",
-                            "enable": true
-                        },
-                        "meta": {
-                            "enable": true,
-                            "keyword": "denc"
-                        }
-                    },
-                    "dims": {
-                        "meta": {
-                            "maxSourceSize": 2,
-                            "enable": true,
-                            "keyword": "dims",
-                            "minSourceSize": 0
-                        }
-                    },
                     "epubedit": {
                         "meta": {
-                            "keyword": "epubedit",
-                            "enable": true
+                            "enable": true,
+                            "keyword": "epubedit"
                         },
                         "trim": {
                             "prefix": []
                         },
                         "archive": {
                             "rules": [],
+                            "enable": true
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "enable": true,
+                            "keyword": "dencbulk"
+                        },
+                        "meta": {
+                            "keyword": "denc",
+                            "enable": true
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2,
+                            "keyword": "dims",
+                            "enable": true
+                        }
+                    },
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
                             "enable": true
                         }
                     }
