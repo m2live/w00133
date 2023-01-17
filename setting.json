@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=626",
+        "version": "1.0.4/1;workstack=627",
         "admin": "",
         "defaultHosting": ""
     },
@@ -921,21 +921,119 @@
     "hosting": [
         {
             "listen": "*:80",
+            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
             },
-            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
+                            "keyword": "dims",
                             "enable": true,
                             "minSourceSize": 0,
+                            "maxSourceSize": 2
+                        }
+                    }
+                }
+            },
+            "enable": true
+        },
+        {
+            "listen": "*:80",
+            "name": "epub.test.com",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
+            "functions": {
+                "network": {
+                    "cache": {
+                        "cachingKey": {
+                            "case": {
+                                "enable": true
+                            },
+                            "queryString": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            }
+                        },
+                        "ttl": {
+                            "custom": [
+                                {
+                                    "pattern": "*.jsp",
+                                    "sec": 9
+                                }
+                            ],
+                            "resCode": {
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "noCache": {
+                                    "sec": 5
+                                }
+                            }
+                        }
+                    },
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
+                        }
+                    }
+                },
+                "contents": {
+                    "unzip": {
+                        "meta": {
+                            "keyword": "unzip",
+                            "enable": true
+                        }
+                    },
+                    "dims": {
+                        "meta": {
+                            "minSourceSize": 0,
                             "maxSourceSize": 2,
-                            "keyword": "dims"
+                            "keyword": "dims",
+                            "enable": true
+                        }
+                    },
+                    "denc": {
+                        "bulk": {
+                            "enable": true,
+                            "keyword": "dencbulk"
+                        },
+                        "meta": {
+                            "enable": true,
+                            "keyword": "denc"
+                        }
+                    },
+                    "epubedit": {
+                        "archive": {
+                            "enable": true,
+                            "rules": []
+                        },
+                        "meta": {
+                            "enable": true,
+                            "keyword": "epubedit"
+                        },
+                        "trim": {
+                            "prefix": []
                         }
                     }
                 }
