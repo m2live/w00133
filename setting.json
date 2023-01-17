@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=622",
+        "version": "1.0.4/1;workstack=623",
         "admin": "",
         "defaultHosting": ""
     },
@@ -921,113 +921,21 @@
     "hosting": [
         {
             "listen": "*:80",
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "enable": true,
-                            "maxSourceSize": 2,
-                            "keyword": "dims",
-                            "minSourceSize": 0
-                        }
-                    }
-                }
-            },
             "name": "141.164.35.166",
-            "enable": true
-        },
-        {
-            "listen": "*:80",
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
+                ]
             },
-            "name": "epub.winesoft.co.kr",
             "functions": {
-                "network": {
-                    "cache": {
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "resCode": {
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                }
-                            },
-                            "custom": [
-                                {
-                                    "pattern": "*.js",
-                                    "sec": 9
-                                }
-                            ]
-                        }
-                    }
-                },
                 "contents": {
-                    "denc": {
-                        "bulk": {
-                            "keyword": "dencbulk",
-                            "enable": true
-                        },
-                        "meta": {
-                            "keyword": "denc",
-                            "enable": true
-                        }
-                    },
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
-                            "maxSourceSize": 2,
+                            "minSourceSize": 0,
                             "enable": true,
-                            "minSourceSize": 0
-                        }
-                    },
-                    "unzip": {
-                        "meta": {
-                            "keyword": "unzip",
-                            "enable": true
-                        }
-                    },
-                    "epubedit": {
-                        "meta": {
-                            "keyword": "epubedit",
-                            "enable": true
-                        },
-                        "trim": {
-                            "prefix": []
-                        },
-                        "archive": {
-                            "rules": [],
-                            "enable": true
+                            "keyword": "dims",
+                            "maxSourceSize": 2
                         }
                     }
                 }
