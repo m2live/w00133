@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=630",
+        "version": "1.0.4/1;workstack=631",
         "admin": "",
         "defaultHosting": ""
     },
@@ -931,10 +931,10 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "minSourceSize": 0,
                             "maxSourceSize": 2,
                             "enable": true,
-                            "keyword": "dims"
+                            "keyword": "dims",
+                            "minSourceSize": 0
                         }
                     }
                 }
@@ -942,56 +942,63 @@
             "enable": true
         },
         {
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
             "functions": {
                 "network": {
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
-                        }
-                    },
                     "cache": {
+                        "cachingKey": {
+                            "case": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            },
+                            "queryString": {
+                                "enable": true
+                            }
+                        },
                         "ttl": {
-                            "custom": [],
                             "resCode": {
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 1799
-                                },
                                 "noCache": {
                                     "sec": 5
                                 },
                                 "res3xx": {
                                     "sec": 300
                                 },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 1799
+                                },
                                 "res4xx": {
                                     "sec": 30
                                 }
-                            }
-                        },
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
                             },
-                            "case": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            }
+                            "custom": []
+                        }
+                    },
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
                         }
                     }
                 }
             },
+            "https": [
+                {
+                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-0df7ac24-8729-42d2-998d-86551c092570?generation=1674017497604975&alt=media",
+                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-dca3a639-fe44-4b35-a91c-0ae8e12d78de?generation=1674017509043920&alt=media",
+                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-aa77131c-3468-4870-9ea2-48c25544069d?generation=1674017503215100&alt=media"
+                }
+            ],
             "name": "test.winesoft.co.kr",
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
             "enable": true
         }
     ]
