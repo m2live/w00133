@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=631",
+        "version": "1.0.4/1;workstack=632",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,84 +920,24 @@
     },
     "hosting": [
         {
-            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
             },
+            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 2,
-                            "enable": true,
                             "keyword": "dims",
-                            "minSourceSize": 0
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "functions": {
-                "network": {
-                    "cache": {
-                        "cachingKey": {
-                            "case": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "resCode": {
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res2xx": {
-                                    "sec": 1799
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                }
-                            },
-                            "custom": []
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
                             "enable": true,
-                            "keyword": "proxy"
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2
                         }
                     }
                 }
-            },
-            "https": [
-                {
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-0df7ac24-8729-42d2-998d-86551c092570?generation=1674017497604975&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-dca3a639-fe44-4b35-a91c-0ae8e12d78de?generation=1674017509043920&alt=media",
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-aa77131c-3468-4870-9ea2-48c25544069d?generation=1674017503215100&alt=media"
-                }
-            ],
-            "name": "test.winesoft.co.kr",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
             },
             "enable": true
         }
