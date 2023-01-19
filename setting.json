@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=641",
+        "version": "1.0.4/1;workstack=642",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,6 +920,7 @@
     },
     "hosting": [
         {
+            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
@@ -930,71 +931,10 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "minSourceSize": 0,
                             "maxSourceSize": 2,
+                            "enable": true,
                             "keyword": "dims",
-                            "enable": true
-                        }
-                    }
-                }
-            },
-            "name": "141.164.35.166",
-            "enable": true
-        },
-        {
-            "name": "test.winesoft.co.kr",
-            "https": [
-                {
-                    "cert": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-aa77131c-3468-4870-9ea2-48c25544069d?generation=1674017503215100&alt=media",
-                    "key": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-dca3a639-fe44-4b35-a91c-0ae8e12d78de?generation=1674017509043920&alt=media",
-                    "ca": "https://storage.googleapis.com/download/storage/v1/b/stg-m2live-api.appspot.com/o/services%2Fstg-0df7ac24-8729-42d2-998d-86551c092570?generation=1674017497604975&alt=media"
-                }
-            ],
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "functions": {
-                "network": {
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
-                        }
-                    },
-                    "cache": {
-                        "cachingKey": {
-                            "case": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "custom": [],
-                            "resCode": {
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                }
-                            }
+                            "minSourceSize": 0
                         }
                     }
                 }
