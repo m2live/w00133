@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=654",
+        "version": "1.0.4/1;workstack=655",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,24 +920,77 @@
     },
     "hosting": [
         {
+            "origin": {
+                "protocol": "http",
+                "address": [
+                    "demo.winesoft.co.kr"
+                ]
+            },
             "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "keyword": "dims",
                             "maxSourceSize": 2,
-                            "enable": true,
-                            "minSourceSize": 0
+                            "keyword": "dims",
+                            "minSourceSize": 0,
+                            "enable": true
                         }
                     }
                 }
             },
+            "enable": true
+        },
+        {
+            "name": "test.winesoft.co.kr",
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
+                ]
+            },
+            "functions": {
+                "network": {
+                    "proxy": {
+                        "meta": {
+                            "keyword": "proxy",
+                            "enable": true
+                        }
+                    },
+                    "cache": {
+                        "cachingKey": {
+                            "case": {
+                                "enable": true
+                            },
+                            "queryString": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            }
+                        },
+                        "ttl": {
+                            "custom": [],
+                            "resCode": {
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                }
+                            }
+                        }
+                    }
+                }
             },
             "enable": true
         }
