@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=649",
+        "version": "1.0.4/1;workstack=650",
         "admin": "",
         "defaultHosting": ""
     },
@@ -921,23 +921,23 @@
     "hosting": [
         {
             "name": "141.164.35.166",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "minSourceSize": 0,
-                            "maxSourceSize": 2,
-                            "keyword": "dims",
-                            "enable": true
-                        }
-                    }
-                }
-            },
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
+            },
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "enable": true,
+                            "maxSourceSize": 2,
+                            "minSourceSize": 0,
+                            "keyword": "dims"
+                        }
+                    }
+                }
             },
             "enable": true
         }
