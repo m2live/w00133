@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=648",
+        "version": "1.0.4/1;workstack=649",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,6 +920,7 @@
     },
     "hosting": [
         {
+            "name": "141.164.35.166",
             "functions": {
                 "contents": {
                     "dims": {
@@ -932,65 +933,11 @@
                     }
                 }
             },
-            "name": "141.164.35.166",
             "origin": {
-                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ]
-            },
-            "enable": true
-        },
-        {
-            "name": "test.winesoft.co.kr",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "functions": {
-                "network": {
-                    "cache": {
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "custom": [],
-                            "resCode": {
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                }
-                            }
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
-                            "enable": true,
-                            "keyword": "proxy"
-                        }
-                    }
-                }
+                ],
+                "protocol": "http"
             },
             "enable": true
         }
