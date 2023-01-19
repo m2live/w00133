@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=646",
+        "version": "1.0.4/1;workstack=647",
         "admin": "",
         "defaultHosting": ""
     },
@@ -921,10 +921,10 @@
     "hosting": [
         {
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
+                ]
             },
             "functions": {
                 "contents": {
@@ -939,6 +939,59 @@
                 }
             },
             "name": "141.164.35.166",
+            "enable": true
+        },
+        {
+            "functions": {
+                "network": {
+                    "proxy": {
+                        "meta": {
+                            "enable": true,
+                            "keyword": "proxy"
+                        }
+                    },
+                    "cache": {
+                        "cachingKey": {
+                            "case": {
+                                "enable": true
+                            },
+                            "queryString": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            }
+                        },
+                        "ttl": {
+                            "resCode": {
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                },
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "noCache": {
+                                    "sec": 5
+                                }
+                            },
+                            "custom": []
+                        }
+                    }
+                }
+            },
+            "name": "test.winesoft.co.kr",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
             "enable": true
         }
     ]
