@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.0.4/1;workstack=651",
+        "version": "1.0.4/1;workstack=652",
         "admin": "",
         "defaultHosting": ""
     },
@@ -920,77 +920,24 @@
     },
     "hosting": [
         {
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "maxSourceSize": 2,
+                            "enable": true,
+                            "minSourceSize": 0,
+                            "keyword": "dims"
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "demo.winesoft.co.kr"
                 ],
                 "protocol": "http"
-            },
-            "name": "141.164.35.166",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims",
-                            "enable": true,
-                            "maxSourceSize": 2,
-                            "minSourceSize": 0
-                        }
-                    }
-                }
-            },
-            "enable": true
-        },
-        {
-            "name": "test.winesoft.co.kr",
-            "origin": {
-                "protocol": "http",
-                "address": [
-                    "demo.winesoft.co.kr"
-                ]
-            },
-            "functions": {
-                "network": {
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
-                        }
-                    },
-                    "cache": {
-                        "ttl": {
-                            "resCode": {
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                }
-                            },
-                            "custom": []
-                        },
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            }
-                        }
-                    }
-                }
             },
             "enable": true
         }
