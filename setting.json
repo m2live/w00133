@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.2/1;workstack=662",
+        "version": "1.1.2/1;workstack=663",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1251,22 +1251,21 @@
                 "contents": {
                     "dims": {
                         "meta": {
-                            "maxSourceSize": 2,
-                            "minSourceSize": 0,
+                            "enable": true,
                             "keyword": "dims",
-                            "enable": true
+                            "minSourceSize": 0,
+                            "maxSourceSize": 2
                         }
                     }
                 }
             },
             "name": "141.164.35.166",
             "origin": {
+                "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "enable": true
+                ]
+            }
         }
     ]
 }
