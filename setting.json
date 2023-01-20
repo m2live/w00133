@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.2/1;workstack=670",
+        "version": "1.2.2/1;workstack=671",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1247,7 +1247,12 @@
     },
     "hosting": [
         {
-            "name": "www.lotterentacar.net",
+            "urlRewrites": [
+                {
+                    "replace": "/#1/dims/format/webp/dims/optimize",
+                    "pattern": "(.png|jpg|jpeg|gif)"
+                }
+            ],
             "functions": {
                 "contents": {
                     "dims": {
@@ -1260,18 +1265,13 @@
                     }
                 }
             },
+            "name": "141.164.35.166",
             "origin": {
                 "address": [
                     "www.lotterentacar.net"
                 ],
                 "protocol": "http"
             },
-            "urlRewrites": [
-                {
-                    "pattern": "(.png|jpg|jpeg|gif)",
-                    "replace": "/#1/dims/format/webp/dims/optimize"
-                }
-            ],
             "enable": true
         }
     ]
