@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.2/1;workstack=660",
+        "version": "1.2.2/1;workstack=661",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1247,21 +1247,74 @@
     },
     "hosting": [
         {
+            "functions": {
+                "contents": {
+                    "dims": {
+                        "meta": {
+                            "keyword": "dims",
+                            "maxSourceSize": 2,
+                            "enable": true,
+                            "minSourceSize": 0
+                        }
+                    }
+                }
+            },
+            "name": "141.164.35.166",
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
             },
-            "name": "141.164.35.166",
+            "enable": true
+        },
+        {
+            "name": "test.winesoft.co.kr",
+            "origin": {
+                "address": [
+                    "demo.winesoft.co.kr"
+                ],
+                "protocol": "http"
+            },
             "functions": {
-                "contents": {
-                    "dims": {
+                "network": {
+                    "cache": {
+                        "ttl": {
+                            "custom": [],
+                            "resCode": {
+                                "res5xx": {
+                                    "sec": 30
+                                },
+                                "res4xx": {
+                                    "sec": 30
+                                },
+                                "noCache": {
+                                    "sec": 5
+                                },
+                                "res2xx": {
+                                    "sec": 1800
+                                },
+                                "res3xx": {
+                                    "sec": 300
+                                }
+                            }
+                        },
+                        "cachingKey": {
+                            "case": {
+                                "enable": true
+                            },
+                            "queryString": {
+                                "enable": true
+                            },
+                            "acceptEncoding": {
+                                "enable": true
+                            }
+                        }
+                    },
+                    "proxy": {
                         "meta": {
-                            "minSourceSize": 0,
                             "enable": true,
-                            "keyword": "dims",
-                            "maxSourceSize": 2
+                            "keyword": "proxy"
                         }
                     }
                 }
