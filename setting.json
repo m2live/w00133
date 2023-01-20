@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.2/1;workstack=669",
+        "version": "1.2.2/1;workstack=670",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1247,17 +1247,24 @@
     },
     "hosting": [
         {
+            "name": "www.lotterentacar.net",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
                             "enable": true,
                             "maxSourceSize": 20,
-                            "keyword": "dims",
-                            "minSourceSize": 0
+                            "minSourceSize": 0,
+                            "keyword": "dims"
                         }
                     }
                 }
+            },
+            "origin": {
+                "address": [
+                    "www.lotterentacar.net"
+                ],
+                "protocol": "http"
             },
             "urlRewrites": [
                 {
@@ -1265,13 +1272,6 @@
                     "replace": "/#1/dims/format/webp/dims/optimize"
                 }
             ],
-            "name": "www.lotterentacar.net",
-            "origin": {
-                "address": [
-                    "www.lotterentacar.net"
-                ],
-                "protocol": "https"
-            },
             "enable": true
         }
     ]
