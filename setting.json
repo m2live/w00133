@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.2/1;workstack=659",
+        "version": "1.2.2/1;workstack=660",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1247,82 +1247,24 @@
     },
     "hosting": [
         {
-            "name": "141.164.35.166",
-            "functions": {
-                "contents": {
-                    "dims": {
-                        "meta": {
-                            "keyword": "dims",
-                            "minSourceSize": 0,
-                            "maxSourceSize": 2,
-                            "enable": true
-                        }
-                    }
-                }
-            },
             "origin": {
                 "protocol": "http",
                 "address": [
                     "demo.winesoft.co.kr"
                 ]
             },
-            "enable": true
-        },
-        {
-            "name": "www.winesoft.co.kr",
+            "name": "141.164.35.166",
             "functions": {
-                "network": {
-                    "cache": {
-                        "ttl": {
-                            "custom": [
-                                {
-                                    "pattern": "http://www.google.com",
-                                    "sec": 30
-                                }
-                            ],
-                            "resCode": {
-                                "res3xx": {
-                                    "sec": 30
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res2xx": {
-                                    "sec": 1
-                                }
-                            }
-                        },
-                        "cachingKey": {
-                            "case": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            },
-                            "queryString": {
-                                "enable": true
-                            }
-                        }
-                    },
-                    "proxy": {
+                "contents": {
+                    "dims": {
                         "meta": {
+                            "minSourceSize": 0,
                             "enable": true,
-                            "keyword": "proxy"
+                            "keyword": "dims",
+                            "maxSourceSize": 2
                         }
                     }
                 }
-            },
-            "origin": {
-                "address": [
-                    "www.g2.com"
-                ],
-                "protocol": "http"
             },
             "enable": true
         }
