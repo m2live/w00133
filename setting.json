@@ -1,6 +1,6 @@
 {
     "meta": {
-        "version": "1.2.2/1;workstack=682",
+        "version": "1.2.2/1;workstack=683",
         "group": "",
         "branch": "",
         "admin": "",
@@ -1249,82 +1249,29 @@
         {
             "urlRewrites": [
                 {
-                    "pattern": "(.png|jpg|jpeg|gif)",
-                    "replace": "/#1/dims/format/webp/dims/optimize"
+                    "replace": "/#1/dims/format/webp/dims/optimize",
+                    "pattern": "(.png|jpg|jpeg|gif)"
                 }
             ],
-            "name": "www.lotterentacar.net",
             "origin": {
                 "protocol": "https",
                 "address": [
                     "www.lotterentacar.net"
                 ]
             },
+            "name": "www.lotterentacar.net",
             "functions": {
                 "contents": {
                     "dims": {
                         "meta": {
-                            "enable": true,
-                            "minSourceSize": 0,
+                            "keyword": "dims",
                             "maxSourceSize": 20,
-                            "keyword": "dims"
+                            "enable": true,
+                            "minSourceSize": 0
                         }
                     }
                 }
             },
-            "enable": true
-        },
-        {
-            "origin": {
-                "address": [
-                    "demo.winesoft.co.kr"
-                ],
-                "protocol": "http"
-            },
-            "functions": {
-                "network": {
-                    "cache": {
-                        "cachingKey": {
-                            "queryString": {
-                                "enable": true
-                            },
-                            "case": {
-                                "enable": true
-                            },
-                            "acceptEncoding": {
-                                "enable": true
-                            }
-                        },
-                        "ttl": {
-                            "custom": [],
-                            "resCode": {
-                                "noCache": {
-                                    "sec": 5
-                                },
-                                "res4xx": {
-                                    "sec": 30
-                                },
-                                "res3xx": {
-                                    "sec": 300
-                                },
-                                "res2xx": {
-                                    "sec": 1800
-                                },
-                                "res5xx": {
-                                    "sec": 30
-                                }
-                            }
-                        }
-                    },
-                    "proxy": {
-                        "meta": {
-                            "keyword": "proxy",
-                            "enable": true
-                        }
-                    }
-                }
-            },
-            "name": "demo.winesoft.co.kr",
             "enable": true
         }
     ]
